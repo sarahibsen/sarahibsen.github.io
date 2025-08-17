@@ -10,14 +10,6 @@
 	</head>
 
 	<body>
-    <!-- Loader -->
-<div id="custom-preloader">
-    <canvas id="custom-matrix"></canvas>
-    <div class="custom-loading-bar">
-        <div class="custom-loading-fill" id="custom-loading-fill"></div>
-    </div>
-</div>
-
 
     <!-- Main Content -->
     <div id="content" style="display:none;">
@@ -85,52 +77,37 @@
 				</a>
 			</p>
 		</footer>
-		<script>
 
-// ***************************************************************//
-// Matrix effect
-const canvas = document.getElementById('custom-matrix');
-const ctx = canvas.getContext('2d');
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
 
-const columns = Math.floor(canvas.width / 20);
-const drops = Array(columns).fill(1);
+<!-- carousel set up --> 
+<section aria-label="My Work" style="margin-top: 40px;">
+  <div class="carousel" data-carousel>
+    <button class="carousel-button prev" data-carousel-button="prev">&#8656;</button>
+    <button class="carousel-button next" data-carousel-button="next">&#8658;</button>
+    <ul data-slides>
+      <!-- first project -->
+      <li class="slide" data-active>
+        <a href="sketchbook/cta.html">
+          <img src="images/project1-graphic.png" alt="Graphic design for Urban Architecture Project 1">
+        </a>
+      </li>
+      <!-- second project -->
+      <li class="slide">
+        <a href="sketchbook/proj2_pg1.html">
+          <img src="images/project2-graphic.png" alt="Graphic design for Urban Architecture Project 2">
+        </a>
+      </li>
+      <!--  photography page -->
+      <li class="slide">
+        <a href="photography.html">
+          <img src="images/photography-graphic.png" alt="Graphic design for Photography page">
+        </a>
+      </li>
+    </ul>
+  </div>
+</section>
 
-function drawMatrix() {
-    ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-    ctx.fillStyle = '#0f0';
-    ctx.font = '20px monospace';
-
-    drops.forEach((y, index) => {
-        const text = String.fromCharCode(Math.random() * 128);
-        ctx.fillText(text, index * 20, y * 20);
-
-        if (y * 20 > canvas.height && Math.random() > 0.975) {
-            drops[index] = 0;
-        }
-        drops[index]++;
-    });
-}
-
-setInterval(drawMatrix, 20);
-
-// Loading bar animation
-const fill = document.getElementById('custom-loading-fill');
-let loadWidth = 0;
-
-const loadingInterval = setInterval(() => {
-    if (loadWidth >= 100) {
-        clearInterval(loadingInterval);
-        document.getElementById('custom-preloader').style.display = 'none';
-        document.getElementById('content').style.display = 'block';
-    }
-    loadWidth += 1;
-    fill.style.width = loadWidth + '%';
-}, 50);
-</script>
 		
+		<script src="script.js" defer></script>
 	</body>
 </html>
