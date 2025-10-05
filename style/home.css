@@ -1,0 +1,199 @@
+/* General Body Styles */
+body {
+    font-family: 'Jaldi', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #fdfdfd; /* A neutral background color */
+}
+
+/* Navigation Bar */
+.nav-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 50px;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.nav-logo img {
+    height: 60px; /* Adjust as needed */
+}
+
+.nav-links {
+    display: flex;
+    gap: 40px;
+}
+
+.nav-link {
+    color: black;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: 400;
+}
+
+/* Dropdown for "My Work" */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {
+    background-color: #EBC9B9;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+/* Footer */
+.footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+    padding: 40px 20px;
+    background-color: #f1f1f1;
+}
+
+.social-icons {
+    display: flex;
+    gap: 20px;
+}
+
+.social-icon {
+    /* Add styles for your icons here */
+    font-size: 24px;
+    color: #333;
+    text-decoration: none;
+}
+
+.contact-text {
+    color: black;
+    font-size: 18px;
+    font-weight: 400;
+}
+/* Introduction Section */
+.intro-section {
+    padding: 50px 100px;
+    text-align: center;
+}
+
+.header-text {
+    color: black;
+    font-size: 36px;
+    font-weight: 400;
+}
+
+.body-text {
+    color: black;
+    font-size: 24px;
+    font-weight: 400;
+    max-width: 800px;
+    margin: 20px auto; /* Centering the text block */
+}
+
+/* Main Content - Property Cards */
+.main-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+    padding: 20px;
+}
+
+.property-card {
+    background: #EBC9B9;
+    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+    width: 762px;
+    height: 280px;
+    position: relative; /* Crucial for positioning child elements */
+    overflow: hidden; /* Hides the image as it slides out */
+}
+
+.property-card a {
+    text-decoration: none;
+    color: black;
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+
+.property-title {
+    font-size: 18px;
+    font-weight: 400;
+    padding: 0 30px;
+    width: 120px; /* Gives space for the text on the left */
+    z-index: 2; /* Ensures title stays on top */
+}
+
+/* The text that is revealed on hover */
+.property-text-hidden {
+    position: absolute;
+    left: 180px; /* Positioned to the right of the visible title */
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%); /* Vertically centers the text */
+    z-index: 0;
+}
+
+.property-text-hidden h3 {
+    margin-top: 0;
+    font-size: 24px;
+}
+
+/* The container for the sliding image(s) */
+.property-image-container {
+    position: absolute;
+    top: 0;
+    left: 180px; /* Aligns with the start of the hidden text area */
+    width: calc(100% - 180px); /* Takes up the remaining space */
+    height: 100%;
+    background: #EBC9B9; /* Same background to cover text */
+    z-index: 1; /* Sits on top of the hidden text, but below the main title */
+    transition: left 0.5s ease-in-out; /* The animation magic! */
+}
+
+/* The sliding action when hovering over the card */
+.property-card:hover .property-image-container {
+    left: 100%; /* Slides the image container completely to the right */
+}
+
+.property-image-container img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover; /* Ensures image covers the container */
+    box-shadow: -4px 0px 4px rgba(0, 0, 0, 0.25); /* Shadow on the left edge */
+}
+
+/* Specific styling for the double image photography section */
+.property-image-double {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    padding: 0 20px;
+}
+
+.property-image-double img {
+    width: auto;
+    height: 90%; /* A bit of padding from top/bottom */
+    object-fit: cover;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); /* Regular shadow for these */
+}

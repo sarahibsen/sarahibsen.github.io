@@ -1,0 +1,201 @@
+/* === Main Style for Photography Page === */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Updated to match your home page style */
+body {
+    font-family: 'Jaldi', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #fdfdfd; /* A neutral background color */
+}
+
+main {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.3);
+  overflow: hidden; 
+}
+
+/* 
+======================================================
+  === ASSIGN BACKGROUND IMAGES TO UNIQUE CLASSES ===
+======================================================
+*/
+.item-1 { background-image: url('../images/photography/aiden.jpg'); }
+.item-2 { background-image: url('../images/photography/claire.jpg'); }
+.item-3 { background-image: url('../images/photography/hannah.jpg'); }
+.item-4 { background-image: url('../images/photography/kris.jpg'); }
+.item-5 { background-image: url('../images/photography/IMG_0602.jpg'); }
+.item-6 { background-image: url('../images/photography/09.png'); }
+
+
+/* 
+============================================================
+  === STYLE THE LAYOUT BASED ON THE ITEM'S POSITION ===
+============================================================
+*/
+.item {
+  width: 200px;
+  height: 300px;
+  list-style-type: none;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1;
+  
+  /* --- IMAGE SIZING UPDATES --- */
+  background-size: contain;     /* This ensures the entire image fits */
+  background-repeat: no-repeat; /* Prevents the image from tiling */
+  background-position: center;
+  background-color: #000;       /* Black background for "letterboxing" */
+  /* --- End of Image Sizing Updates --- */
+
+  border-radius: 20px;
+  box-shadow: 0 20px 30px rgba(255,255,255,0.3) inset;
+  transition: transform 0.1s, left 0.75s, top 0.75s, width 0.75s, height 0.75s;
+}
+
+.item:nth-child(1), .item:nth-child(2) {
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  transform: none;
+  border-radius: 0;
+  box-shadow: none;
+  opacity: 1;
+}
+
+.item:nth-child(3) { left: 50%; }
+.item:nth-child(4) { left: calc(50% + 220px); }
+.item:nth-child(5) { left: calc(50% + 440px); }
+.item:nth-child(6) { left: calc(50% + 660px); opacity: 0; }
+
+
+/* === Content Styling === */
+.content {
+  width: min(30vw, 400px);
+  position: absolute;
+  top: 50%;
+  left: 3rem;
+  transform: translateY(-50%);
+  color: white;
+  text-shadow: 0 3px 8px rgba(0,0,0,0.5);
+  opacity: 0;
+  display: none;
+}
+
+/* --- FONT UPDATES --- */
+.content .title {
+  font-family: 'Jaldi', sans-serif;
+  font-weight: bold; /* Keep title bold */
+  font-size: 2.5rem; /* Slightly larger title */
+  /* text-transform: uppercase; removed for a softer look */
+}
+
+.content .description {
+  font-family: 'Jaldi', sans-serif;
+  line-height: 1.7;
+  margin: 1rem 0 1.5rem;
+  font-size: 1.2rem; /* Slightly larger description */
+}
+
+.content button {
+  font-family: 'Jaldi', sans-serif;
+  width: fit-content;
+  background-color: rgba(0,0,0,0.1);
+  color: white;
+  border: 2px solid white;
+  border-radius: 0.25rem;
+  padding: 0.75rem;
+  cursor: pointer;
+  font-size: 1rem; /* Set explicit font size */
+  transition: background-color 0.3s, color 0.3s;
+}
+/* --- End of Font Updates --- */
+
+
+.content button:hover {
+    background-color: white;
+    color: black;
+}
+
+.item:nth-of-type(2) .content {
+  display: block;
+  animation: show 0.75s ease-in-out 0.3s forwards;
+}
+
+@keyframes show {
+  0% {
+    filter: blur(5px);
+    transform: translateY(calc(-50% + 75px));
+  }
+  100% {
+    opacity: 1;
+    filter: blur(0);
+  }
+}
+
+/* === Navigation Styling (No Changes) === */
+.nav {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 5;
+  user-select: none;
+}
+
+.nav .btn {
+  background-color: rgba(255,255,255,0.5);
+  color: rgba(0,0,0,0.7);
+  border: 2px solid rgba(0,0,0,0.6);
+  margin: 0 0.25rem;
+  padding: 0.75rem;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.nav .btn:hover {
+  background-color: rgba(255,255,255,0.3);
+}
+
+/* === Media Queries (No Changes) === */
+@media (min-width: 651px) and (max-width: 900px) {
+  .content .title        { font-size: 1.8rem; }
+  .content .description  { font-size: 1rem; }
+  .content button        { font-size: 0.9rem; }
+  
+  .item {
+    width: 160px;
+    height: 270px;
+  }
+  .item:nth-child(3) { left: 50%; }
+  .item:nth-child(4) { left: calc(50% + 170px); }
+  .item:nth-child(5) { left: calc(50% + 340px); }
+  .item:nth-child(6) { left: calc(50% + 510px); opacity: 0; }
+}
+
+@media (max-width: 650px) {
+  .content {
+    left: 1.5rem;
+  }
+  .content .title        { font-size: 1.5rem; }
+  .content .description  { font-size: 0.9rem; }
+  .content button        { font-size: 0.8rem; }
+
+  .item {
+    width: 130px;
+    height: 220px;
+  }
+  .item:nth-child(3) { left: 50%; }
+  .item:nth-child(4) { left: calc(50% + 140px); }
+  .item:nth-child(5) { left: calc(50% + 280px); }
+  .item:nth-child(6) { left: calc(50% + 420px); opacity: 0; }
+}
