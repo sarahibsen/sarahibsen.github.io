@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Graphic Design Portfolio</title>
+    <link rel="stylesheet" href="./style/style.css">
+    <link rel="stylesheet" href="./style/graphic_design.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jaldi&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div class="page-container">
+
+    <!-- Navigation Bar -->
+    <nav class="nav-bar">
+        <a href="home.html" class="nav-logo">
+            <img src="images/bitmap 1.png" alt="Logo">
+        </a>
+        <div class="nav-links">
+            <div class="nav-item dropdown">
+                <a href="#" class="nav-link">My Work</a>
+                <div class="dropdown-content">
+                    <a href="graphic_design.html">Graphic Design</a>
+                    <a href="https://github.com/sarahibsen">Code Projects</a>
+                    <a href="photography.html">Photography</a>
+                </div>
+            </div>
+            <a href="#" class="nav-link">About</a>
+            <a href="#" class="nav-link">Contact</a>
+        </div>
+    </nav>
+        <h1 class="page-title">Graphic Design</h1>
+
+        <main class="portfolio-grid">
+
+            <aside class="portfolio-nav">
+                <nav>
+                    <a href="#" class="nav-link active" data-target="infographics">Infographics</a>
+                    <a href="#" class="nav-link" data-target="mockups">Mockups</a>
+                    <a href="#" class="nav-link" data-target="websites">Websites</a>
+                </nav>
+            </aside>
+
+            <!-- Right Column: Project Display Area -->
+            <section class="portfolio-content">
+
+                <!-- Infographics Content (Visible by default) -->
+                <div class="portfolio-item active" id="infographics">
+                    <img src="./images/Ibsen_infographic.png" alt="Infographic about therapy and the brain">
+                    <div class="item-description">
+                        <h3>How Therapy Effects the Brain</h3>
+                        <p>This was my first infographic created. We had a project in art class to pick a topic we were interested in and research it. I chose how therapy can affect the brain!</p>
+                    </div>
+                </div>
+
+                <!-- Mockups Content (Hidden by default) -->
+                <div class="portfolio-item" id="mockups">
+                    <img src="./images/Mock_Invitation_cards.jpeg" alt="A project mockup">
+                     <div class="item-description">
+                        <h3>Wedding Planner</h3>
+                        <p>Apart of my portfolio was to create something I have not done before. The idea was an ‘all-in-one’ wedding planner. I used GIMP and Canva to create this mock up. If you want to see my process of bringing this creation to life, take a look at my socials!</p>
+                    </div>
+                </div>
+
+                <!-- Websites Content (Hidden by default) -->
+                <div class="portfolio-item" id="websites">
+                   <img src="./images/mockup_futureForward.png" alt="A website project">
+                     <div class="item-description">
+                        <h3>Future Forward School Supplies</h3>
+                        <p>As a college student, having to find affordable school supplies, housing, and even scholarships is hard. Me and a group of four other designers collaborated together to bring ‘Future Forward’, all of the resources combined into one.</p>
+                    </div>
+                </div>
+
+            </section>
+        </main>
+
+        <main class="gallery-page-grid">
+            
+            <!-- Left Column: Sidebar Navigation -->
+            <aside class="gallery-sidebar">
+                <nav>
+                    <a href="mockups.html" class="active">Mockups</a> <!-- "active" class highlights the current page -->
+                    <a href="#">Websites</a>
+                    <a href="#">Gallery</a>
+                </nav>
+            </aside>
+
+            <!-- Right Column: The Image Grid -->
+            <section class="gallery-grid">
+                
+                <!-- Grid Item 1 -->
+                <a href="#" class="grid-item">
+                    <img src="./images/mockup_futureForward.png" alt="Future Forward Website Mockup">
+                    <div class="item-overlay">
+                        <h3>Future Forward</h3>
+                        <p>Website Mockup</p>
+                    </div>
+                </a>
+
+                <!-- Grid Item 2 -->
+                <a href="#" class="grid-item">
+                    <img src="./images/Mock_Invitation_cards.jpeg" alt="Pineapple Covey Stationery Mockup">
+                    <div class="item-overlay">
+                        <h3>Wedding Invite</h3>
+                        <p>Stationery Mockup</p>
+                    </div>
+                </a>
+
+                <!-- Grid Item 3 -->
+                <a href="#" class="grid-item">
+                    <img src="images/supply-sense-mockup.png" alt="Supply Sense Website Mockup">
+                    <div class="item-overlay">
+                        <h3>Supply Sense</h3>
+                        <p>UI/UX Mockup</p>
+                    </div>
+                </a>
+
+                <!-- Grid Item 4  -->
+                <a href="#" class="grid-item">
+                    <img src="https://placehold.co/600x450/eeeeee/cccccc?text=Project+4" alt="Placeholder for project 4">
+                    <div class="item-overlay">
+                        <h3>Project Title</h3>
+                        <p>Project Category</p>
+                    </div>
+                </a>
+                
+
+            </section>
+        </main>
+    </div>
+    
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="social-icons">
+            <a href="https://github.com/sarahibsen" class="social-icon"><img src = "images/Github.svg"></a>
+            <a href="https://instagram.com/tullibeee" class="social-icon"><img src = "images/Instagram.svg"></a>
+            <a href="#" class="social-icon"><img src = "images/Figma.svg"></a>
+        </div>
+        <p class="contact-text">Contact me</p>
+    </footer>
+
+    <script src="script/graphic_design.js"></script>
+
+</body>
+</html>
