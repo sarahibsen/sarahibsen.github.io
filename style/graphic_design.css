@@ -1,3 +1,5 @@
+/* In style/graphic_design.css */
+
 .page-container {
     width: 90%;
     max-width: 1200px;
@@ -43,17 +45,18 @@
 }
 
 .portfolio-item {
-    opacity: 1;
+    opacity: 0;
+    visibility: hidden;
+    position: absolute;
     transition: opacity 0.4s ease-in-out;
     display: none;
 }
 
 .portfolio-item.active {
     display: block;
-}
-
-.portfolio-item.fading {
-    opacity: 0;
+    position: relative;
+    opacity: 1;
+    visibility: visible;
 }
 
 .portfolio-item img {
@@ -76,42 +79,32 @@
     color: var(--text-color);
 }
 
-.gallery-page-grid {
-    display: grid;
-    grid-template-columns: 1fr 4fr;
-    gap: 80px;
-    align-items: start;
-    margin-top: 60px;
+/* --- NEW GALLERY CONTAINER STYLES --- */
+.gallery-container {
+    margin-top: 80px; 
+    border-top: 1px solid #eee; /* Visual separator */
+    padding-top: 40px;
 }
 
-.gallery-sidebar nav a {
-    display: block;
-    font-size: 18px;
-    font-family: 'Jaldi', sans-serif;
-    color: #888;
-    text-decoration: none;
-    margin-bottom: 25px;
+.gallery-title {
+    font-size: 28px;
     font-weight: 400;
-    transition: color 0.3s ease;
-    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="8" height="12" viewBox="0 0 8 12"><path fill="%23888" d="M2 0L0 2l4 4-4 4 2 2 6-6z"/></svg>') no-repeat right center;
-    padding-right: 20px;
-}
-
-.gallery-sidebar nav a:hover {
+    margin-bottom: 30px;
     color: var(--text-color);
 }
 
-.gallery-sidebar nav a.active {
-    color: var(--text-color);
-    font-weight: bold;
+/* --- Gallery Set Logic --- */
+.gallery-set {
+    display: none; /* Hide all galleries by default */
 }
 
-.gallery-grid {
-    display: grid;
+.gallery-set.active {
+    display: grid; /* Show the active gallery as a grid */
     grid-template-columns: repeat(2, 1fr);
     gap: 30px;
 }
 
+/* --- Grid Item Styles (Same as before) --- */
 .grid-item {
     position: relative;
     display: block;
@@ -129,53 +122,27 @@
 }
 
 .item-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
     background: rgba(0, 0, 0, 0.6);
     color: white;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    display: flex; flex-direction: column; justify-content: center; align-items: center;
     opacity: 0;
     transition: opacity 0.4s ease-out;
 }
+.item-overlay h3 { font-size: 22px; margin: 0; transform: translateY(10px); transition: transform 0.4s ease-out; }
+.item-overlay p { margin: 5px 0 0; transform: translateY(10px); transition: transform 0.4s ease-out 0.1s; }
+.grid-item:hover img { transform: scale(1.05); }
+.grid-item:hover .item-overlay { opacity: 1; }
+.grid-item:hover .item-overlay h3, .grid-item:hover .item-overlay p { transform: translateY(0); }
 
-.item-overlay h3 {
-    font-size: 22px;
-    margin: 0;
-    transform: translateY(10px);
-    transition: transform 0.4s ease-out;
-}
 
-.item-overlay p {
-    margin: 5px 0 0;
-    transform: translateY(10px);
-    transition: transform 0.4s ease-out 0.1s;
-}
-
-.grid-item:hover img {
-    transform: scale(1.05);
-}
-
-.grid-item:hover .item-overlay {
-    opacity: 1;
-}
-
-.grid-item:hover .item-overlay h3,
-.grid-item:hover .item-overlay p {
-    transform: translateY(0);
-}
-
+/* --- Mobile Responsiveness --- */
 @media (max-width: 768px) {
-    .portfolio-grid, .gallery-page-grid {
-        grid-template-columns: 1fr;
+    .portfolio-grid {
+        grid-template-columns: 1fr; /* Stack columns on mobile */
     }
 
-    .gallery-grid {
-        grid-template-columns: 1fr;
+    .gallery-set.active {
+        grid-template-columns: 1fr; /* Single column gallery on mobile */
     }
 }

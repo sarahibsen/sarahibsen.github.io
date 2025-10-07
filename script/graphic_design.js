@@ -1,31 +1,32 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Find all the navigation links in the portfolio sidebar
-    const portfolioNavLinks = document.querySelectorAll('.portfolio-nav nav a');
-
+    // Select all the interactive elements
+    const navLinks = document.querySelectorAll('.portfolio-nav nav a');
     const portfolioItems = document.querySelectorAll('.portfolio-item');
-
-    if (portfolioNavLinks.length > 0) {
-        portfolioNavLinks.forEach(link => {
+    const gallerySets = document.querySelectorAll('.gallery-set');
+    if (navLinks.length > 0) {
+        
+        navLinks.forEach(link => {
             link.addEventListener('click', (event) => {
-                event.preventDefault();
+                event.preventDefault(); 
 
                 const targetId = link.getAttribute('data-target');
-                const targetItem = document.getElementById(targetId);
-
    
-                portfolioItems.forEach(item => {
-                    item.classList.remove('active');
-                });
-
-
-                if (targetItem) {
-                    targetItem.classList.add('active');
-                }
-                portfolioNavLinks.forEach(navLink => {
-                    navLink.classList.remove('active');
-                });
+                navLinks.forEach(navLink => navLink.classList.remove('active'));
+                portfolioItems.forEach(item => item.classList.remove('active'));
+                gallerySets.forEach(set => set.classList.remove('active'));
 
                 link.classList.add('active');
+
+                const targetPortfolioItem = document.getElementById(targetId);
+                if (targetPortfolioItem) {
+                    targetPortfolioItem.classList.add('active');
+                }
+
+                // Activate the corresponding gallery set
+                const targetGallerySet = document.getElementById(targetId + '-gallery');
+                if (targetGallerySet) {
+                    targetGallerySet.classList.add('active');
+                }
             });
         });
     }

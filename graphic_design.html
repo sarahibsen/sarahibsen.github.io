@@ -14,7 +14,6 @@
 
     <div class="page-container">
 
-    <!-- Navigation Bar -->
     <nav class="nav-bar">
         <a href="index.html" class="nav-logo">
             <img src="images/bitmap 1.png" alt="Logo">
@@ -40,105 +39,75 @@
     </nav>
         <h1 class="page-title">Graphic Design</h1>
 
-        <main class="portfolio-grid">
 
-            <aside class="portfolio-nav">
-                <nav>
-                    <a href="#" class="nav-link active" data-target="infographics">Infographics</a>
-                    <a href="#" class="nav-link" data-target="mockups">Mockups</a>
-                    <a href="#" class="nav-link" data-target="websites">Websites</a>
-                </nav>
-            </aside>
+        <main>
+            <!-- TOP SECTION: FEATURED PROJECT DISPLAY -->
+            <div class="portfolio-grid">
+                <aside class="portfolio-nav">
+                    <nav>
+                        <a href="#" class="nav-link active" data-target="infographics">Infographics</a>
+                        <a href="#" class="nav-link" data-target="mockups">Mockups</a>
+                        <a href="#" class="nav-link" data-target="websites">Websites</a>
+                    </nav>
+                </aside>
 
-            <!-- Right Column: Project Display Area -->
-            <section class="portfolio-content">
-
-                <!-- Infographics Content (Visible by default) -->
-                <div class="portfolio-item active" id="infographics">
-                    <img src="./images/Ibsen_infographic.png" alt="Infographic about therapy and the brain">
-                    <div class="item-description">
-                        <h3>How Therapy Effects the Brain</h3>
-                        <p>This was my first infographic created. We had a project in art class to pick a topic we were interested in and research it. I chose how therapy can affect the brain!</p>
+                <section class="portfolio-content">
+                    <div class="portfolio-item active" id="infographics">
+                        <img src="./images/Ibsen_infographic.png" alt="Infographic about therapy and the brain">
+                        <div class="item-description">
+                            <h3>How Therapy Affects the Brain</h3>
+                            <p>This was my first infographic created for an art class project. I chose to research how therapy can physically affect the brain.</p>
+                        </div>
                     </div>
+                    <div class="portfolio-item" id="mockups">
+                        <img src="./images/Mock_Invitation_cards.jpeg" alt="A project mockup">
+                        <div class="item-description">
+                            <h3>Wedding Planner Mockup</h3>
+                            <p>For this portfolio piece, I created an 'all-in-one' wedding planner concept. I used GIMP and Canva to create this stationery mock up.</p>
+                        </div>
+                    </div>
+                    <div class="portfolio-item" id="websites">
+                       <img src="./images/mockup_futureForward.png" alt="A website project">
+                        <div class="item-description">
+                            <h3>Future Forward School Supplies</h3>
+                            <p>A collaborative project to design 'Future Forward', a one-stop resource for college students to find affordable supplies, housing, and scholarships.</p>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <!-- BOTTOM SECTION: GALLERIES -->
+            <div class="gallery-container">
+                <h2 class="gallery-title">More Projects</h2>
+
+                <!-- Infographics Gallery (Initially hidden) -->
+                <div class="gallery-set" id="infographics-gallery">
+                    <p>More infographic projects coming soon!</p>
                 </div>
 
-                <!-- Mockups Content (Hidden by default) -->
-                <div class="portfolio-item" id="mockups">
-                    <img src="./images/Mock_Invitation_cards.jpeg" alt="A project mockup">
-                     <div class="item-description">
-                        <h3>Wedding Planner</h3>
-                        <p>Apart of my portfolio was to create something I have not done before. The idea was an ‘all-in-one’ wedding planner. I used GIMP and Canva to create this mock up. If you want to see my process of bringing this creation to life, take a look at my socials!</p>
-                    </div>
+                <!-- Mockups Gallery (Shown by default because nav is active) -->
+                <div class="gallery-set active" id="mockups-gallery">
+                    <a href="https://www.figma.com/slides/QtbXzzj6RjiiOPRgPU5cNZ/Casey-s-Wedding?node-id=1-87&t=goHgKpUje9kPS88W-1" class="grid-item">
+                        <img src="./images/Mock_Invitation_cards.jpeg" alt="Stationery Mockup">
+                        <div class="item-overlay"><h3>Wedding Invite</h3><p>Stationery Mockup</p></div>
+                    </a>
+                    <a href="#" class="grid-item">
+                        <img src="./images/table_idea_1.png" alt="Table Stationary Mockup">
+                        <div class="item-overlay"><h3>Wedding Table Display</h3><p>Table Stationary Mockup</p></div>
+                    </a>
                 </div>
 
-                <!-- Websites Content (Hidden by default) -->
-                <div class="portfolio-item" id="websites">
-                   <img src="./images/mockup_futureForward.png" alt="A website project">
-                     <div class="item-description">
-                        <h3>Future Forward School Supplies</h3>
-                        <p>As a college student, having to find affordable school supplies, housing, and even scholarships is hard. Me and a group of four other designers collaborated together to bring ‘Future Forward’, all of the resources combined into one.</p>
-                    </div>
+                <!-- Websites Gallery (Initially hidden) -->
+                <div class="gallery-set" id="websites-gallery">
+                    <a href="https://www.figma.com/proto/G9TMFGNZk8GtLuU8E4i77i/Project-1---Fire-Squad?node-id=1304-3013&starting-point-node-id=1304%3A3013&t=xN09m6kKPIVxRnQ2-1" class="grid-item">
+                        <img src="./images/mockup_futureForward.png" alt="Future Forward Website Mockup">
+                        <div class="item-overlay"><h3>Future Forward</h3><p>Website Mockup</p></div>
+                    </a>
                 </div>
-
-            </section>
-        </main>
-
-        <main class="gallery-page-grid">
-            
-            <!-- Left Column: Sidebar Navigation -->
-            <aside class="gallery-sidebar">
-                <nav>
-                    <a href="mockups.html" class="active">Mockups</a> <!-- "active" class highlights the current page -->
-                    <a href="#">Websites</a>
-                    <a href="#">Gallery</a>
-                </nav>
-            </aside>
-
-            <!-- Right Column: The Image Grid -->
-            <section class="gallery-grid">
-                
-                <!-- Grid Item 1 -->
-                <a href="#" class="grid-item">
-                    <img src="./images/mockup_futureForward.png" alt="Future Forward Website Mockup">
-                    <div class="item-overlay">
-                        <h3>Future Forward</h3>
-                        <p>Website Mockup</p>
-                    </div>
-                </a>
-
-                <!-- Grid Item 2 -->
-                <a href="#" class="grid-item">
-                    <img src="./images/Mock_Invitation_cards.jpeg" alt="Pineapple Covey Stationery Mockup">
-                    <div class="item-overlay">
-                        <h3>Wedding Invite</h3>
-                        <p>Stationery Mockup</p>
-                    </div>
-                </a>
-
-                <!-- Grid Item 3 -->
-                <a href="#" class="grid-item">
-                    <img src="images/supply-sense-mockup.png" alt="Supply Sense Website Mockup">
-                    <div class="item-overlay">
-                        <h3>Supply Sense</h3>
-                        <p>UI/UX Mockup</p>
-                    </div>
-                </a>
-
-                <!-- Grid Item 4  -->
-                <a href="#" class="grid-item">
-                    <img src="https://placehold.co/600x450/eeeeee/cccccc?text=Project+4" alt="Placeholder for project 4">
-                    <div class="item-overlay">
-                        <h3>Project Title</h3>
-                        <p>Project Category</p>
-                    </div>
-                </a>
-                
-
-            </section>
+            </div>
         </main>
     </div>
     
-    <!-- Footer -->
     <footer class="footer">
         <div class="social-icons">
             <a href="https://github.com/sarahibsen" class="social-icon"><img src = "images/Github.svg"></a>
@@ -148,8 +117,8 @@
         <p class="contact-text">Contact me</p>
     </footer>
 
-    <script src="script/graphic_design.js"></script>
     <script src="script/script.js"></script>
+    <script src="script/graphic_design.js"></script>
 
 </body>
 </html>
