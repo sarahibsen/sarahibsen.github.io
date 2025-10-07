@@ -8,21 +8,20 @@
     font-size: 36px;
     font-weight: 400;
     margin-bottom: 30px;
+    color: var(--text-color);
 }
 
-/* --- Main Portfolio Grid Layout --- */
 .portfolio-grid {
     display: grid;
-    grid-template-columns: 1fr 3fr; /* Left column is 1 part, right is 3 parts */
-    gap: 60px; /* Space between the columns */
+    grid-template-columns: 1fr 3fr;
+    gap: 60px;
     align-items: start;
 }
 
-/* --- Left Column: Portfolio Navigation --- */
 .portfolio-nav nav a {
     display: block;
     font-size: 18px;
-    color: #888; /* Dim color for inactive links */
+    color: #888;
     text-decoration: none;
     margin-bottom: 25px;
     font-weight: 400;
@@ -30,39 +29,32 @@
 }
 
 .portfolio-nav nav a:hover {
-    color: #000; /* Darken on hover */
+    color: var(--text-color);
 }
 
-/* Style for the currently selected nav item */
 .portfolio-nav nav a.active {
-    color: #000;
-    font-weight: bold; /* Make it bold */
+    color: var(--text-color);
+    font-weight: bold;
 }
 
-/* --- Right Column: Portfolio Content --- */
 .portfolio-content {
-    position: relative; /* Needed for positioning items */
-    min-height: 500px; /* Give it some height to avoid collapsing */
+    position: relative;
+    min-height: 500px;
 }
 
 .portfolio-item {
-    /* Animation settings */
     opacity: 1;
     transition: opacity 0.4s ease-in-out;
-    
-    /* Hiding and showing */
-    display: none; /* Hide all items by default */
+    display: none;
 }
 
 .portfolio-item.active {
-    display: block; /* Show only the active item */
+    display: block;
 }
 
-/* Class to trigger the fade-out animation */
 .portfolio-item.fading {
     opacity: 0;
 }
-
 
 .portfolio-item img {
     width: 100%;
@@ -75,37 +67,28 @@
 .item-description h3 {
     font-size: 24px;
     margin-bottom: 10px;
+    color: var(--text-color);
 }
 
 .item-description p {
     font-size: 18px;
     line-height: 1.6;
+    color: var(--text-color);
 }
 
-/* --- ============================================= --- */
-/* --- == GALLERY PROMO SECTION STYLES == --- */
-/* --- ============================================= --- */
-.page-container {
-    width: 90%;
-    max-width: 1440px; /* Wider max-width for gallery pages */
-    margin: 40px auto;
-}
-
-/* --- Main Page Layout (Sidebar + Grid) --- */
 .gallery-page-grid {
     display: grid;
-    grid-template-columns: 1fr 4fr; /* Sidebar is 1 part, grid is 4 parts */
-    gap: 80px; /* Space between sidebar and grid */
+    grid-template-columns: 1fr 4fr;
+    gap: 80px;
     align-items: start;
-    margin-top: 60px; /* Space below the main navbar */
+    margin-top: 60px;
 }
 
-/* --- Left Column: Sidebar Navigation --- */
 .gallery-sidebar nav a {
     display: block;
     font-size: 18px;
     font-family: 'Jaldi', sans-serif;
-    color: #888; /* Dim color for inactive links */
+    color: #888;
     text-decoration: none;
     margin-bottom: 25px;
     font-weight: 400;
@@ -115,28 +98,24 @@
 }
 
 .gallery-sidebar nav a:hover {
-    color: #000;
+    color: var(--text-color);
 }
 
-/* Style for the link of the page you are currently on */
 .gallery-sidebar nav a.active {
-    color: #000;
+    color: var(--text-color);
     font-weight: bold;
 }
 
-
-/* --- Right Column: The Image Grid --- */
 .gallery-grid {
     display: grid;
-    /* Create 2 equal-width columns */
     grid-template-columns: repeat(2, 1fr);
-    gap: 30px; /* Space between the grid items */
+    gap: 30px;
 }
 
 .grid-item {
-    position: relative; /* Crucial for positioning the overlay */
+    position: relative;
     display: block;
-    overflow: hidden; /* Hides parts of the image that overflow on zoom */
+    overflow: hidden;
     border-radius: 8px;
     box-shadow: 0 4px 15px rgba(0,0,0,0.1);
 }
@@ -145,54 +124,58 @@
     display: block;
     width: 100%;
     height: 100%;
-    object-fit: cover; /* Ensures the image covers the area without distortion */
-    transition: transform 0.4s ease-out; /* Animation for the zoom effect */
+    object-fit: cover;
+    transition: transform 0.4s ease-out;
 }
 
-/* --- HOVER EFFECT: Image Zoom and Overlay --- */
-
-/* The dark overlay that appears on hover */
 .item-overlay {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.6); /* Semi-transparent black */
+    background: rgba(0, 0, 0, 0.6);
     color: white;
-    
-    /* Center the text inside the overlay */
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    
-    opacity: 0; /* Hidden by default */
-    transition: opacity 0.4s ease-out; /* Animation for the fade effect */
+    opacity: 0;
+    transition: opacity 0.4s ease-out;
 }
 
 .item-overlay h3 {
     font-size: 22px;
     margin: 0;
-    transform: translateY(10px); /* Start text slightly lower */
+    transform: translateY(10px);
     transition: transform 0.4s ease-out;
 }
+
 .item-overlay p {
     margin: 5px 0 0;
     transform: translateY(10px);
-    transition: transform 0.4s ease-out 0.1s; /* Add a slight delay */
+    transition: transform 0.4s ease-out 0.1s;
 }
 
-/* When you hover over the grid item... */
 .grid-item:hover img {
-    transform: scale(1.05); /* Zoom the image in slightly */
+    transform: scale(1.05);
 }
 
 .grid-item:hover .item-overlay {
-    opacity: 1; /* Fade in the overlay */
+    opacity: 1;
 }
 
 .grid-item:hover .item-overlay h3,
 .grid-item:hover .item-overlay p {
-    transform: translateY(0); /* Move the text up to its final position */
+    transform: translateY(0);
+}
+
+@media (max-width: 768px) {
+    .portfolio-grid, .gallery-page-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .gallery-grid {
+        grid-template-columns: 1fr;
+    }
 }

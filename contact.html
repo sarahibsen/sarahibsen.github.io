@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact - Sarah Ibsen Design</title>
+    <link rel="stylesheet" href="style/style.css">
+    <link rel="stylesheet" href="style/contact.css">
+    <link href="https://fonts.googleapis.com/css2?family=Jaldi&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <nav class="nav-bar">
+        <a href="index.html" class="nav-logo">
+            <img src="images/bitmap 1.png" alt="Logo">
+        </a>
+        <div class="nav-links">
+            <div class="nav-item dropdown">
+                <a href="#" class="nav-link">My Work</a>
+                <div class="dropdown-content">
+                    <a href="graphic_design.html">Graphic Design</a>
+                    <a href="https://github.com/sarahibsen">Code Projects</a>
+                    <a href="photography.html">Photography</a>
+                </div>
+            </div>
+            <a href="about.html" class="nav-link">About</a>
+            <a href="contact.html" class="nav-link">Contact</a>
+        </div>
+        <button id="theme-toggle">Toggle Theme</button>
+        <div class="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </nav>
+
+    <main class="contact-container">
+        <header class="contact-header">Get in Touch</header>
+        <p class="contact-subheader">How can I help you? Please select an option below.</p>
+
+        <form id="contact-form" action="https://formspree.io/f/mjkaeyqy" method="POST">
+            <div class="job-type-selection">
+                <input type="radio" id="commission" name="job_type" value="Commission">
+                <label for="commission">Graphic Design Commission</label>
+                
+                <input type="radio" id="photoshoot" name="job_type" value="Photoshoot">
+                <label for="photoshoot">Book a Photoshoot</label>
+            </div>
+
+            <!-- This section is for a design commission. It's hidden by default. -->
+            <div id="commission-form" class="form-section">
+                <input type="hidden" name="inquiry_type" value="Graphic Design Commission">
+                <h3>Commission Details</h3>
+                <div class="form-group">
+                    <label for="user-name">Your Name</label>
+                    <input type="text" id="user-name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="user-email">Your Email</label>
+                    <input type="email" id="user-email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="message">Tell me about your project</label>
+                    <textarea id="message" name="message" rows="6" required></textarea>
+                </div>
+                <button type="submit" class="submit-btn">Send Inquiry</button>
+            </div>
+
+            <!-- This section is for booking a photoshoot. It's hidden by default. -->
+            <div id="photoshoot-form" class="form-section">
+                <input type="hidden" name="inquiry_type" value="Photoshoot Booking Request">
+                <h3>Select an Available Date</h3>
+                <div id="calendar-container">
+                    <div id="calendar-header">
+                        <button type="button" id="prev-month">&lt;</button>
+                        <h2 id="month-year"></h2>
+                        <button type="button" id="next-month">&gt;</button>
+                    </div>
+                    <div id="calendar-grid"></div>
+                </div>
+                 <div class="form-group">
+                    <label for="photo-name">Your Name</label>
+                    <input type="text" id="photo-name" name="photo_name" required>
+                </div>
+                <div class="form-group">
+                    <label for="photo-email">Your Email</label>
+                    <input type="email" id="photo-email" name="photo_email" required>
+                </div>
+                <button type="submit" class="submit-btn">Request Booking</button>
+            </div>
+        </form>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="social-icons">
+            <a href="https://github.com/sarahibsen" class="social-icon"><img src="images/Github.svg" alt="Github"></a>
+            <a href="https://instagram.com/tullibeee" class="social-icon"><img src="images/Instagram.svg" alt="Instagram"></a>
+            <a href="#" class="social-icon"><img src="images/Figma.svg" alt="Figma"></a>
+        </div>
+        <p class="contact-text">Contact me</p>
+    </footer>
+
+    <script src="script/script.js"></script> 
+    <script src="script/contact.js"></script>
+
+</body>
+</html>
