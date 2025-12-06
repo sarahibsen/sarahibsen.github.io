@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Buzzify Mobile</title>
+    <style>
+        /* --- CORE VARIABLES --- */
+        :root {
+            --bg-color: #121212;
+            --card-bg: #1e1e1e;
+            --text-main: #ffffff;
+            --spotify-green: #1db954;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        h1 { color: var(--spotify-green); margin-bottom: 20px; text-align: center; }
+        
+        /* --- UI ELEMENTS --- */
+        .btn {
+            display: block;
+            width: 100%;
+            max-width: 350px;
+            padding: 15px;
+            border-radius: 50px;
+            border: none;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            text-align: center;
+            text-decoration: none;
+            margin-bottom: 15px;
+            transition: transform 0.1s;
+        }
+        .btn:active { transform: scale(0.98); }
+        .btn-primary { background-color: var(--spotify-green); color: white; }
+        .btn-outline { background-color: transparent; border: 1px solid white; color: white; }
+
+        .loader {
+            border: 4px solid #333;
+            border-top: 4px solid var(--spotify-green);
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 50px auto;
+            display: none;
+        }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        
+        .hidden { display: none !important; }
+
+        /* --- POKEMON CARD CSS --- */
+        .poke-scene {
+            perspective: 600px;
+            margin: 20px auto;
+            width: 320px;
+            height: 480px;
+        }
+
+        .poke-card {
+            width: 100%;
+            height: 100%;
+            border-radius: 15px;
+            position: relative;
+            padding: 12px;
+            box-sizing: border-box;
+            background: #f8f8f8; /* Card Border Color */
+            box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+            /* Holo Gradient Overlay */
+            background-image: linear-gradient(125deg, #efd5ff 0%, #515ada 100%);
+        }
+
+        .card-inner {
+            background: #e6e6e6; /* Inner background */
+            height: 100%;
+            width: 100%;
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+            box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
+        }
+
+        /* Header */
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 12px;
+            font-weight: bold;
+            color: #333;
+        }
+        .card-name { font-size: 1.2rem; text-transform: capitalize; }
+        .card-hp { color: #cc0000; font-size: 1.1rem; }
+
+        /* Image Box */
+        .card-img-container {
+            margin: 0 15px;
+            height: 180px;
+            background: #333;
+            border: 4px solid #bbaabb;
+            box-shadow: 2px 2px 5px rgba(0,0,0,0.3);
+            overflow: hidden;
+            position: relative;
+        }
+        .card-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Info Bar */
+        .card-type-bar {
+            background-color: #666;
+            color: white;
+            margin: 10px 15px 5px 15px;
+            padding: 4px;
+            font-size: 0.8rem;
+            text-align: center;
+            border-radius: 20px;
+            font-style: italic;
+            box-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+        }
+
+        /* Moves / Stats */
+        .card-moves {
+            flex: 1;
+            padding: 10px 15px;
+            color: #333;
+            font-size: 0.9rem;
+        }
+        .move-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #ccc;
+            padding: 8px 0;
+        }
+        .move-row:last-child { border-bottom: none; }
+        .move-name { font-weight: bold; font-size: 1rem; }
+        .move-damage { font-size: 1.2rem; font-weight: bold; }
+
+        /* Footer */
+        .card-footer {
+            font-size: 0.7rem;
+            color: #666;
+            padding: 5px 15px 10px 15px;
+            font-style: italic;
+            border-top: 1px solid #ccc;
+        }
+
+        /* Dynamic Types Colors */
+        .type-pop { background-image: linear-gradient(to bottom right, #ff9ff3, #feca57); } /* Fairy/Electric */
+        .type-rock { background-image: linear-gradient(to bottom right, #b33939, #2c2c54); } /* Fighting */
+        .type-hip-hop { background-image: linear-gradient(to bottom right, #ff793f, #ffb142); } /* Fire */
+        .type-indie { background-image: linear-gradient(to bottom right, #33d9b2, #218c74); } /* Grass */
+        .type-electronic { background-image: linear-gradient(to bottom right, #34ace0, #227093); } /* Water */
+        
+        .list-section { width: 100%; max-width: 350px; margin-top: 20px; }
+        .list-title { margin-top: 20px; border-bottom: 1px solid #333; padding-bottom: 5px; }
+
+    </style>
+</head>
+<body>
+
+    <h1>Buzzify Cards</h1>
+
+    <% if (!user) { %>
+        <!-- Login View -->
+        <div style="text-align: center; margin-top: 50px;">
+            <p>Generate your Spotify Music Card.</p>
+            <a href="/auth/spotify" class="btn btn-primary">Login with Spotify</a>
+        </div>
+    <% } else { %>
+        <!-- App View -->
+        <button id="btn-load" class="btn btn-primary">🃏 Draw My Card</button>
+        <button onclick="window.location.href='/logout'" class="btn btn-outline">Logout</button>
+        
+        <div id="loader" class="loader"></div>
+
+        <!-- The Card Container -->
+        <div id="card-area" class="hidden">
+            <div class="poke-scene">
+                <div id="generated-card" class="poke-card type-pop">
+                </div>
+            </div>
+
+            <div class="list-section">
+                <h3 class="list-title">Top Artists</h3>
+                <div id="simple-artist-list" style="color: #bbb; font-size: 0.9rem;"></div>
+            </div>
+        </div>
+    <% } %>
+
+<script>
+    const accessToken = "<%= user ? user.accessToken : '' %>";
+
+    if(accessToken) {
+        document.getElementById('btn-load').addEventListener('click', fetchData);
+    }
+
+    async function fetchData() {
+        const btn = document.getElementById('btn-load');
+        const loader = document.getElementById('loader');
+        const area = document.getElementById('card-area');
+
+        btn.style.display = 'none';
+        loader.style.display = 'block';
+
+        try {
+            // Fetch Artists
+            const response = await fetch('https://api.spotify.com/v1/me/top/artists?limit=10&time_range=medium_term', {
+                headers: { 'Authorization': 'Bearer ' + accessToken }
+            });
+            const data = await response.json();
+            const artists = data.items;
+
+            if(!artists || artists.length === 0) {
+                alert("Not enough data to generate a card!");
+                window.location.href = '/logout';
+                return;
+            }
+
+            renderCard(artists);
+            
+            loader.style.display = 'none';
+            area.classList.remove('hidden');
+
+        } catch (e) {
+            console.error(e);
+            alert("Error connecting to Spotify.");
+            window.location.href = '/logout';
+        }
+    }
+
+    function renderCard(artists) {
+        let allGenres = [];
+        artists.forEach(a => { if(a.genres) allGenres.push(...a.genres); });
+
+        const counts = {};
+        allGenres.forEach(g => { counts[g] = (counts[g] || 0) + 1; });
+        
+        const sortedGenres = Object.entries(counts).sort((a,b) => b[1] - a[1]);
+        const domGenre = sortedGenres.length > 0 ? sortedGenres[0][0] : "Music";
+        const domCount = sortedGenres.length > 0 ? sortedGenres[0][1] : 0;
+        
+        // Calculate HP (Percentage of total genre tags)
+        const totalTags = allGenres.length;
+        const hp = Math.min(100, Math.round((domCount / totalTags) * 100) + 50); // Base 50 + percentage
+
+        let themeClass = "type-pop"; // Default
+        if (domGenre.includes("rock") || domGenre.includes("metal")) themeClass = "type-rock";
+        else if (domGenre.includes("hip hop") || domGenre.includes("rap")) themeClass = "type-hip-hop";
+        else if (domGenre.includes("indie") || domGenre.includes("folk")) themeClass = "type-indie";
+        else if (domGenre.includes("house") || domGenre.includes("edm") || domGenre.includes("electronic")) themeClass = "type-electronic";
+        // If the top artist doesn't match the genre, we still show them as the main image, 
+        // but moves come from the genre logic.
+        const topArtist = artists[0];
+        const secondArtist = artists[1] || { name: "Spotify", popularity: 50 };
+
+        const html = `
+            <div class="card-inner">
+                <div class="card-header">
+                    <span class="card-name">${domGenre}</span>
+                    <span class="card-hp"><small>HP</small>${hp}</span>
+                </div>
+                
+                <div class="card-img-container">
+                    <img src="${topArtist.images[0]?.url}" class="card-img" alt="${topArtist.name}">
+                </div>
+
+                <div class="card-type-bar">
+                    ${topArtist.genres.slice(0,2).join(" • ")} Buzzify
+                </div>
+
+                <div class="card-moves">
+                    <div class="move-row">
+                        <span class="move-name">🎤 ${topArtist.name}</span>
+                        <span class="move-damage">${topArtist.popularity}</span>
+                    </div>
+                    <div class="move-row">
+                        <span class="move-name">🎸 ${secondArtist.name}</span>
+                        <span class="move-damage">${secondArtist.popularity}</span>
+                    </div>
+                    <div style="font-size: 0.8rem; margin-top:8px; color:#555;">
+                        Frequency: <b>${domCount}</b> mentions in top lists.
+                    </div>
+                </div>
+
+                <div class="card-footer">
+                    Weakness: Silence • Resistance: Bass <br>
+                </div>
+            </div>
+        `;
+
+        const cardEl = document.getElementById('generated-card');
+        cardEl.className = `poke-card ${themeClass}`; 
+        cardEl.innerHTML = html;
+
+        document.getElementById('simple-artist-list').innerHTML = artists.slice(0,5)
+            .map((a,i) => `<div>${i+1}. ${a.name}</div>`).join('');
+    }
+</script>
+
+</body>
+</html>
