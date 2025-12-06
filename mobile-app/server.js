@@ -22,7 +22,7 @@ passport.use(
     {
       clientID: process.env.CLIENT_ID,
       clientSecret: process.env.CLIENT_SECRET,
-      callbackURL: 'http://127.0.0.1:8888/auth/spotify/callback',
+      callbackURL: 'https://buzzify-5hmq.onrender.com/auth/spotify/callback',
     },
     function (accessToken, refreshToken, expires_in, profile, done) {
       // IMPORTANT: Add the accessToken to the profile object so we can send it to the client
