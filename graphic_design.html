@@ -11,112 +11,104 @@
     <link href="https://fonts.googleapis.com/css2?family=Jaldi&display=swap" rel="stylesheet">
 </head>
 <body>
+    <div class="container">
+        <header>
+            <h1>Graphic Design</h1>
+            <p class="subtitle">Explore my creative work across different mediums</p>
+        </header>
 
-    <div class="page-container">
-
-    <nav class="nav-bar">
-        <a href="index.html" class="nav-logo">
-            <img src="images/bitmap 1.png" alt="Logo">
-        </a>
-        <div class="nav-links">
-            <div class="nav-item dropdown">
-                <a href="#" class="nav-link">My Work</a>
-                <div class="dropdown-content">
-                    <a href="graphic_design.html">Graphic Design</a>
-                    <a href="https://github.com/sarahibsen">Code Projects</a>
-                    <a href="photography.html">Photography</a>
-                </div>
-            </div>
-            <a href="about.html" class="nav-link">About</a>
-            <a href="contact.html" class="nav-link">Contact</a>
+        <div class="filter-buttons">
+            <button class="filter-btn active" data-filter="all">All Projects</button>
+            <button class="filter-btn" data-filter="infographic">Infographics</button>
+            <button class="filter-btn" data-filter="mockup">Mockups</button>
+            <button class="filter-btn" data-filter="website">Websites</button>
         </div>
-        <button id="theme-toggle">Toggle Theme</button>
-        <div class="hamburger">
-            <span></span>
-            <span></span>
-            <span></span>
+
+        <div class="gallery" id="gallery">
+            <!-- Infographic Projects -->
+            <div class="project-card" data-category="infographic">
+                <div class="image-container">
+                    <img src="./images/Ibsen_infographic.png" alt="Therapy Brain Infographic" class="project-image">
+                    <div class="image-overlay">
+                        <span class="view-text">View Project</span>
+                    </div>
+                </div>
+                <div class="project-info">
+                    <h3 class="project-title">How Therapy Affects the Brain</h3>
+                    <p class="project-description">My first infographic created for an art class project. I researched how therapy can physically affect the brain, visualizing complex neuroscience in an accessible format.</p>
+                    <div class="project-tags">
+                        <span class="tag">Infographic</span>
+                        <span class="tag">Research</span>
+                        <span class="tag">Psychology</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Mockup Projects -->
+            <div class="project-card" data-category="mockup" data-link="https://www.figma.com/slides/QtbXzzj6RjiiOPRgPU5cNZ/Casey-s-Wedding?node-id=1-87&t=goHgKpUje9kPS88W-1">
+                <div class="image-container">
+                    <img src="./images/Mock_Invitation_cards.jpeg" alt="Wedding Planner Mockup" class="project-image">
+                    <div class="image-overlay">
+                        <span class="view-text">View Project</span>
+                    </div>
+                </div>
+                <div class="project-info">
+                    <h3 class="project-title">Wedding Planner Mockup</h3>
+                    <p class="project-description">Created an 'all-in-one' wedding planner concept featuring cohesive stationery design. Used GIMP and Canva to create this elegant mockup suite.</p>
+                    <div class="project-tags">
+                        <span class="tag">Mockup</span>
+                        <span class="tag">Stationery</span>
+                        <span class="tag">Branding</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card" data-category="mockup">
+                <div class="image-container">
+                    <img src="./images/table_idea_1.png" alt="Wedding Table Display" class="project-image">
+                    <div class="image-overlay">
+                        <span class="view-text">View Project</span>
+                    </div>
+                </div>
+                <div class="project-info">
+                    <h3 class="project-title">Wedding Table Display</h3>
+                    <p class="project-description">Designed elegant table displays and place settings for a cohesive wedding aesthetic. Focused on creating an intimate, personalized experience.</p>
+                    <div class="project-tags">
+                        <span class="tag">Mockup</span>
+                        <span class="tag">Event Design</span>
+                        <span class="tag">Print</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Website Projects -->
+            <div class="project-card" data-category="website" data-link="https://www.figma.com/proto/G9TMFGNZk8GtLuU8E4i77i/Project-1---Fire-Squad?node-id=1304-3013&starting-point-node-id=1304%3A3013&t=xN09m6kKPIVxRnQ2-1">
+                <div class="image-container">
+                    <img src="./images/mockup_futureForward.png" alt="Future Forward Website" class="project-image">
+                    <div class="image-overlay">
+                        <span class="view-text">View Project</span>
+                    </div>
+                </div>
+                <div class="project-info">
+                    <h3 class="project-title">Future Forward School Supplies</h3>
+                    <p class="project-description">Collaborative project to design 'Future Forward', a one-stop resource for college students to find affordable supplies, housing, and scholarships.</p>
+                    <div class="project-tags">
+                        <span class="tag">Website</span>
+                        <span class="tag">UX/UI</span>
+                        <span class="tag">Collaboration</span>
+                    </div>
+                </div>
+            </div>
         </div>
-    </nav>
-        <h1 class="page-title">Graphic Design</h1>
-
-
-        <main>
-            <!-- TOP SECTION: FEATURED PROJECT DISPLAY -->
-            <div class="portfolio-grid">
-                <aside class="portfolio-nav">
-                    <nav>
-                        <a href="#" class="nav-link active" data-target="infographics">Infographics</a>
-                        <a href="#" class="nav-link" data-target="mockups">Mockups</a>
-                        <a href="#" class="nav-link" data-target="websites">Websites</a>
-                    </nav>
-                </aside>
-
-                <section class="portfolio-content">
-                    <div class="portfolio-item active" id="infographics">
-                        <img src="./images/Ibsen_infographic.png" alt="Infographic about therapy and the brain">
-                        <div class="item-description">
-                            <h3>How Therapy Affects the Brain</h3>
-                            <p>This was my first infographic created for an art class project. I chose to research how therapy can physically affect the brain.</p>
-                        </div>
-                    </div>
-                    <div class="portfolio-item" id="mockups">
-                        <img src="./images/Mock_Invitation_cards.jpeg" alt="A project mockup">
-                        <div class="item-description">
-                            <h3>Wedding Planner Mockup</h3>
-                            <p>For this portfolio piece, I created an 'all-in-one' wedding planner concept. I used GIMP and Canva to create this stationery mock up.</p>
-                        </div>
-                    </div>
-                    <div class="portfolio-item" id="websites">
-                       <img src="./images/mockup_futureForward.png" alt="A website project">
-                        <div class="item-description">
-                            <h3>Future Forward School Supplies</h3>
-                            <p>A collaborative project to design 'Future Forward', a one-stop resource for college students to find affordable supplies, housing, and scholarships.</p>
-                        </div>
-                    </div>
-                </section>
-            </div>
-
-            <!-- BOTTOM SECTION: GALLERIES -->
-            <div class="gallery-container">
-                <h2 class="gallery-title">More Projects</h2>
-
-                <!-- Infographics Gallery (Initially hidden) -->
-                <div class="gallery-set" id="infographics-gallery">
-                    <p>More infographic projects coming soon!</p>
-                </div>
-
-                <!-- Mockups Gallery (Shown by default because nav is active) -->
-                <div class="gallery-set active" id="mockups-gallery">
-                    <a href="https://www.figma.com/slides/QtbXzzj6RjiiOPRgPU5cNZ/Casey-s-Wedding?node-id=1-87&t=goHgKpUje9kPS88W-1" class="grid-item">
-                        <img src="./images/Mock_Invitation_cards.jpeg" alt="Stationery Mockup">
-                        <div class="item-overlay"><h3>Wedding Invite</h3><p>Stationery Mockup</p></div>
-                    </a>
-                    <a href="#" class="grid-item">
-                        <img src="./images/table_idea_1.png" alt="Table Stationary Mockup">
-                        <div class="item-overlay"><h3>Wedding Table Display</h3><p>Table Stationary Mockup</p></div>
-                    </a>
-                </div>
-
-                <!-- Websites Gallery (Initially hidden) -->
-                <div class="gallery-set" id="websites-gallery">
-                    <a href="https://www.figma.com/proto/G9TMFGNZk8GtLuU8E4i77i/Project-1---Fire-Squad?node-id=1304-3013&starting-point-node-id=1304%3A3013&t=xN09m6kKPIVxRnQ2-1" class="grid-item">
-                        <img src="./images/mockup_futureForward.png" alt="Future Forward Website Mockup">
-                        <div class="item-overlay"><h3>Future Forward</h3><p>Website Mockup</p></div>
-                    </a>
-                </div>
-            </div>
-        </main>
     </div>
-    
-    <footer class="footer">
-        <div class="social-icons">
-            <a href="https://github.com/sarahibsen" class="social-icon"><img src = "images/Github.svg"></a>
-            <a href="https://instagram.com/tullibeee" class="social-icon"><img src = "images/Instagram.svg"></a>
-            <a href="#" class="social-icon"><img src = "images/Figma.svg"></a>
-        </div>
-        <p class="contact-text">Contact me</p>
-    </footer>
 
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox">
+        <div class="lightbox-content">
+            <button class="lightbox-close" id="closeLightbox">&times;</button>
+            <img src="" alt="" class="lightbox-image" id="lightboxImage">
+        </div>
+    </div>
     <script src="script/script.js"></script>
     <script src="script/graphic_design.js"></script>
 
