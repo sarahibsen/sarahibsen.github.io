@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop - Sarah Ibsen Design</title>
+    <link rel="stylesheet" href="style/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Jaldi&display=swap" rel="stylesheet">
+    <style>
+        .shop-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            padding: 2rem 1rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .shop-item {
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            background: var(--background-color, #ffffff);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .shop-item:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .shop-item-image {
+            width: 100%;
+            height: 250px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: white;
+            font-weight: bold;
+        }
+
+        .shop-item-content {
+            padding: 1.5rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .shop-item-content h3 {
+            margin: 0 0 0.5rem 0;
+            font-size: 1.3rem;
+        }
+
+        .shop-item-content p {
+            margin: 0 0 1rem 0;
+            font-size: 0.95rem;
+            opacity: 0.8;
+            flex-grow: 1;
+        }
+
+        .shop-button {
+            background-color: #667eea;
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 4px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            text-decoration: none;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .shop-button:hover {
+            background-color: #764ba2;
+        }
+
+        .shop-button.disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+            opacity: 0.7;
+        }
+
+        @media (max-width: 768px) {
+            .shop-container {
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                gap: 1.5rem;
+            }
+
+            .shop-item-image {
+                height: 200px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <nav class="nav-bar">
+        <a href="index.html" class="nav-logo">
+            <img src="images/bitmap 1.png" alt="Logo">
+        </a>
+        <div class="nav-links">
+            <div class="nav-item dropdown">
+                <a href="#" class="nav-link">My Work</a>
+                <div class="dropdown-content">
+                    <a href="graphic_design.html">Graphic Design</a>
+                    <a href="coding_projects.html">Code Projects</a>
+                    <a href="photography.html">Photography</a>
+                </div>
+            </div>
+            <a href="shop.html" class="nav-link">Shop</a>
+            <a href="about.html" class="nav-link">About</a>
+            <a href="contact.html" class="nav-link">Contact</a>
+        </div>
+        <button id="theme-toggle">Toggle Theme</button>
+        <div class="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <header class="page-header">
+        <h1>Shop</h1>
+        <p>Browse my handmade and custom creations.</p>
+    </header>
+
+    <!-- Shop Items Grid -->
+    <main class="shop-container">
+
+        <!-- Custom CDs -->
+        <div class="shop-item">
+            <div class="shop-item-image">💿</div>
+            <div class="shop-item-content">
+                <h3>Custom CDs</h3>
+                <p>Personalized CD designs with your favorite music or custom artwork. Each CD is professionally crafted with high-quality printing.</p>
+                <button class="shop-button" onclick="contactForOrder('Custom CDs')">Inquire</button>
+            </div>
+        </div>
+
+        <!-- Crocheted Beanies -->
+        <div class="shop-item">
+            <div class="shop-item-image">🧶</div>
+            <div class="shop-item-content">
+                <h3>Crocheted Beanies</h3>
+                <p>Handmade cozy beanies in various colors and styles. Perfect for staying warm while looking stylish. Each piece is unique and made to not only warm your head but protect your hair!</p>
+                <button class="shop-button" onclick="contactForOrder('Crocheted Beanies')">Inquire</button>
+            </div>
+        </div>
+
+        <!-- Stickers -->
+        <div class="shop-item">
+            <div class="shop-item-image">🎨</div>
+            <div class="shop-item-content">
+                <h3>Custom Stickers</h3>
+                <p>Durable, colorful stickers with custom designs. Great for laptops, water bottles, or any smooth surface. Bulk orders available!</p>
+                <button class="shop-button" onclick="contactForOrder('Custom Stickers')">Inquire</button>
+            </div>
+        </div>
+
+        <!-- Art Prints -->
+        <div class="shop-item">
+            <div class="shop-item-image">🖼️</div>
+            <div class="shop-item-content">
+                <h3>Art Prints</h3>
+                <p>High-quality prints of my digital and hand-drawn artwork. Perfect for decorating your space or gifting to a friend.</p>
+                <button class="shop-button" onclick="contactForOrder('Art Prints')">Inquire</button>
+            </div>
+        </div>
+
+        <!-- Commissions -->
+        <div class="shop-item">
+            <div class="shop-item-image">✨</div>
+            <div class="shop-item-content">
+                <h3>Custom Commissions</h3>
+                <p>Looking for something custom-made just for you? I offer commissions for illustrations, graphics, and more. Let's create together!</p>
+                <button class="shop-button" onclick="contactForOrder('Custom Commission')">Inquire</button>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="social-icons">
+            <a href="https://github.com/sarahibsen" class="social-icon"><img src="images/Github.svg" alt="GitHub"></a>
+            <a href="https://instagram.com/tullibeee" class="social-icon"><img src="images/Instagram.svg" alt="Instagram"></a>
+            <a href="#" class="social-icon"><img src="images/Figma.svg" alt="Figma"></a>
+        </div>
+        <p class="contact-text">Contact me</p>
+    </footer>
+
+    <script>
+        function contactForOrder(item) {
+            // Redirect to contact page with item query parameter
+            window.location.href = 'contact.html?item=' + encodeURIComponent(item);
+        }
+    </script>
+    <script src="script/script.js"></script>
+</body>
+</html>
