@@ -16,7 +16,31 @@
             <h1>Graphic Design</h1>
             <p class="subtitle">Explore my creative work across different mediums</p>
         </header>
-
+    <!-- Navigation Bar -->
+    <nav class="nav-bar">
+        <a href="#" class="nav-logo">
+            <img src="images/bitmap 1.png" alt="Logo">
+        </a>
+        <div class="nav-links">
+            <div class="nav-item dropdown">
+                <a href="#" class="nav-link">My Work</a>
+                <div class="dropdown-content">
+                    <a href="graphic_design.html">Graphic Design</a>
+                    <a href="https://github.com/sarahibsen">Code Projects</a>
+                    <a href="photography.html">Photography</a>
+                </div>
+            </div>
+            <a href="about.html" class="nav-link">About</a>
+            <a href="contact.html" class="nav-link">Contact</a>
+            <a href="shop.html" class="nav-link">Shop</a>
+        </div>
+        <button id="theme-toggle">Toggle Theme</button>
+        <div class="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </nav>
         <div class="filter-buttons">
             <button class="filter-btn active" data-filter="all">All Projects</button>
             <button class="filter-btn" data-filter="infographic">Infographics</button>
@@ -45,7 +69,7 @@
             </div>
 
             <!-- Mockup Projects -->
-            <div class="project-card" data-category="mockup" data-link="https://www.figma.com/slides/QtbXzzj6RjiiOPRgPU5cNZ/Casey-s-Wedding?node-id=1-87&t=goHgKpUje9kPS88W-1">
+            <div class="project-card" data-category="mockup" a href="graphic_design_pages/wedding_project.html">
                 <div class="image-container">
                     <img src="./images/Mock_Invitation_cards.jpeg" alt="Wedding Planner Mockup" class="project-image">
                     <div class="image-overlay">
@@ -67,7 +91,7 @@
                 <div class="image-container">
                     <img src="./images/table_idea_1.png" alt="Wedding Table Display" class="project-image">
                     <div class="image-overlay">
-                        <span class="view-text">View Project</span>
+                        <a href="graphic_design_pages/wedding_project"><span class="view-text">View Project</span></a>
                     </div>
                 </div>
                 <div class="project-info">
@@ -82,16 +106,17 @@
             </div>
 
             <!-- Website Projects -->
-            <div class="project-card" data-category="website" data-link="https://www.figma.com/proto/G9TMFGNZk8GtLuU8E4i77i/Project-1---Fire-Squad?node-id=1304-3013&starting-point-node-id=1304%3A3013&t=xN09m6kKPIVxRnQ2-1">
+            <div class="project-card" data-category="website">
                 <div class="image-container">
                     <img src="./images/mockup_futureForward.png" alt="Future Forward Website" class="project-image">
-                    <div class="image-overlay">
-                        <span class="view-text">View Project</span>
-                    </div>
+                    <a href="graphic_design_pages/financial_freedom.html" class="image-overlay">
+                        <span class="view-text">View Project Detail</span>
+                    </a>
+                </div>
                 </div>
                 <div class="project-info">
                     <h3 class="project-title">Future Forward School Supplies</h3>
-                    <p class="project-description">Collaborative project to design 'Future Forward', a one-stop resource for college students to find affordable supplies, housing, and scholarships.</p>
+                    <p class="project-description">One of my collaborative projects was to design 'Future Forward'; a one-stop resource for college students to find affordable supplies, housing, and scholarships.</p>
                     <div class="project-tags">
                         <span class="tag">Website</span>
                         <span class="tag">UX/UI</span>
