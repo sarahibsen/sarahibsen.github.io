@@ -152,4 +152,14 @@ body {
     .hamburger {
         display: block;
     }
+    .nav-bar {
+        display: flex;
+
+    }
+    .nav-logo {
+        display: flex; 
+    }
+    .dropdown-content{
+        display: flex;
+    }
 }
