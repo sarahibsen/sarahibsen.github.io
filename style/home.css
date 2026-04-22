@@ -1,160 +1,8 @@
-/* General Body Styles */
+/* 1. Animated Background (Keep this at the top) */
 body {
+    margin: 0;
     font-family: 'Jaldi', sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: var(--background-color);
-}
-
-/* Introduction Section */
-.intro-section {
-    padding: 50px 100px;
-    text-align: center;
-}
-
-.header-text {
-    color: var(--text-color);
-    font-size: 36px;
-    font-weight: 400;
-}
-
-.body-text {
-    color: var(--text-color);
-    font-size: 24px;
-    font-weight: 400;
-    max-width: 800px;
-    margin: 20px auto;
-}
-
-/* Main Content - Property Cards */
-.main-content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 30px;
-    padding: 20px;
-}
-
-.property-card {
-    background: #EBC9B9;
-    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
-    width: 762px;
-    height: 280px;
-    position: relative;
-    overflow: hidden;
-}
-
-.property-card a {
-    text-decoration: none;
-    color: black;
-    display: flex;
-    align-items: center;
-    height: 100%;
-}
-
-.property-title {
-    font-size: 18px;
-    font-weight: 400;
-    padding: 0 30px;
-    width: 120px;
-    z-index: 2;
-}
-
-.property-text-hidden {
-    position: absolute;
-    left: 180px;
-    right: 20px;
-    top: 50%;
-    transform: translateY(-50%);
-    z-index: 0;
-}
-
-.property-text-hidden h3 {
-    margin-top: 0;
-    font-size: 24px;
-}
-
-.property-image-container {
-    position: absolute;
-    top: 0;
-    left: 180px;
-    width: calc(100% - 180px);
-    height: 100%;
-    background: #EBC9B9;
-    z-index: 1;
-    transition: left 0.5s ease-in-out;
-}
-
-.property-card:hover .property-image-container {
-    left: 100%;
-}
-
-.property-image-container img {
-    height: 100%;
-    width: 100%;
-    object-fit: cover;
-    box-shadow: -4px 0px 4px rgba(0, 0, 0, 0.25);
-}
-
-.property-image-double {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 20px;
-    padding: 0 20px;
-}
-
-.property-image-double img {
-    width: auto;
-    height: 90%;
-    object-fit: cover;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-}
-
-@media (max-width: 768px) {
-    .intro-section {
-        padding: 20px;
-    }
-
-    .property-card {
-        width: 100%;
-        height: auto;
-        flex-direction: column;
-    }
-
-    .property-card a {
-        flex-direction: column;
-    }
-
-    .property-image-container {
-        position: relative;
-        left: 0;
-        width: 100%;
-        height: 200px;
-    }
-
-    .property-card:hover .property-image-container {
-        left: 0;
-    }
-
-    .property-title {
-        padding: 20px;
-        width: 100%;
-        text-align: center;
-    }
-
-    .property-text-hidden {
-        display: none;
-    }
-}
-/* updated */
-/* Performant Animated Gradient Background */
-body {
-    margin: 0;
-    padding: 0;
-    width: 100%;
     min-height: 100vh;
-    /* Soft, professional gradient colors */
     background: linear-gradient(-45deg, #f3e7e9, #e3eeff, #fef9e7, #f3e7e9);
     background-size: 400% 400%;
     animation: gradientBG 15s ease infinite;
@@ -166,44 +14,46 @@ body {
     100% { background-position: 0% 50%; }
 }
 
-/* Layout for the 4 sections */
+/* 2. Grid Layout */
 .main-content.grid-container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 2rem;
+    /* This creates 2 columns on desktop, 1 on mobile automatically */
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 40px;
     padding: 40px;
-    max-width: 1200px;
+    max-width: 1100px;
     margin: 0 auto;
 }
 
-/* Ensure the cards look cohesive */
+/* 3. Card Styling */
 .property-card {
-    background: rgba(255, 255, 255, 0.4); /* Glassmorphism effect */
-    backdrop-filter: blur(5px);
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    border-radius: 15px;
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
     overflow: hidden;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
 .property-card:hover {
     transform: translateY(-10px);
-    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    box-shadow: 0 15px 45px rgba(0, 0, 0, 0.1);
 }
 
-.placeholder-icon {
-    font-size: 4rem;
+.property-card a {
+    text-decoration: none;
+    color: inherit;
     display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100%;
-    background: rgba(0,0,0,0.05);
+    flex-direction: column;
 }
 
-/* Fix for images to ensure they fit correctly in the 4-card layout */
+/* 4. Image/Preview Area */
 .property-image-container {
-    height: 200px;
-    display: flex;
+    position: relative;
+    width: 100%;
+    height: 250px;
+    background: #EBC9B9;
     overflow: hidden;
 }
 
@@ -211,4 +61,75 @@ body {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    transition: transform 0.6s ease;
+}
+
+/* Zoom effect on hover */
+.property-card:hover .property-image-container img {
+    transform: scale(1.1);
+}
+
+/* Placeholder for Shop/Contact icons */
+.placeholder-icon {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 5rem;
+    background: #f8e1d7;
+}
+
+/* 5. Hover Overlay Text */
+.property-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(235, 201, 185, 0.9); /* Your signature color */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    text-align: center;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.property-overlay p {
+    color: #333;
+    font-size: 1.1rem;
+    font-weight: 500;
+}
+
+.property-card:hover .property-overlay {
+    opacity: 1;
+}
+
+/* 6. Card Title Area */
+.card-footer {
+    padding: 20px;
+    background: white;
+    text-align: center;
+}
+
+.property-title {
+    margin: 0;
+    font-size: 22px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+/* 7. Responsive Mobile Tweaks */
+@media (max-width: 480px) {
+    .main-content.grid-container {
+        grid-template-columns: 1fr; /* Force 1 column on small phones */
+        padding: 20px;
+        gap: 20px;
+    }
+    
+    .property-image-container {
+        height: 200px;
+    }
 }
