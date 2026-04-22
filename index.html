@@ -1,104 +1,66 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sarah Ibsen Design</title>
-    <link rel="stylesheet" href="style/home.css">
-    <link rel="stylesheet" href="style/style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Jaldi&display=swap" rel="stylesheet">
-</head>
-<body>
-
-    <!-- Navigation Bar -->
-    <nav class="nav-bar">
-        <a href="#" class="nav-logo">
-            <img src="images/bitmap 1.png" alt="Logo">
-        </a>
-        <div class="nav-links">
-            <div class="nav-item dropdown">
-                <a href="#" class="nav-link">My Work</a>
-                <div class="dropdown-content">
-                    <a href="graphic_design.html">Graphic Design</a>
-                    <a href="https://github.com/sarahibsen">Code Projects</a>
-                    <a href="photography.html">Photography</a>
-                </div>
-            </div>
-            <a href="about.html" class="nav-link">About</a>
-            <a href="contact.html" class="nav-link">Contact</a>
-            <a href="shop.html" class="nav-link">Shop</a>
-        </div>
-        <button id="theme-toggle">Toggle Theme</button>
-        <div class="hamburger">
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
-    </nav>
-
-    <!-- Introduction Section -->
+<!-- Introduction Section -->
     <header class="intro-section">
         <h1 class="header-text">Sarah Ibsen Design</h1>
-        <p class="body-text">Welcome! I'm Sarah, a software engineer with a passion for seeing art in everything. I believe that art, much like math, is a universal language. My goal is to bridge the gap between elegant code and intuitive, beautiful user experiences. I plan to make art part of your digital world!</p>
+        <p class="body-text">Welcome! I'm Sarah, a software engineer with a passion for seeing art in everything.</p>
     </header>
 
-<!-- Main Content Sections -->
-<main class="main-content">
+    <main class="main-content grid-container">
 
-    <!-- Graphic Design Section -->
-    <section class="property-card">
-        <a href="graphic_design.html">
-            <div class="property-text-hidden">
-                <h3>Graphic Design</h3>
-                <p>View my collection of logos, branding materials, and digital illustrations that bring ideas to life.</p>
-            </div>
-            <div class="property-image-container">
-                <img src="images/m+c_stationary_mockup 1.png" alt="Graphic Design Preview">
-            </div>
-            <h2 class="property-title">Graphic Design</h2>
-        </a>
-    </section>
+        <!-- About Preview -->
+        <section class="property-card">
+            <a href="about.html">
+                <div class="property-text-hidden">
+                    <h3>About Me</h3>
+                    <p>Discover the philosophy behind my work and my journey as a designer and engineer.</p>
+                </div>
+                <div class="property-image-container">
+                    <img src="images/bitmap 1.png" alt="About Sarah" style="object-fit: contain; padding: 20px;">
+                </div>
+                <h2 class="property-title">About</h2>
+            </a>
+        </section>
 
-    <!-- Code Projects Section -->
-    <section class="property-card">
-        <a href="https://github.com/sarahibsen">
-            <div class="property-text-hidden">
-                <h3>Programming</h3>
-                <p>Explore my coding projects, ranging from interactive websites to functional applications.</p>
-            </div>
-            <div class="property-image-container">
-                <img src="images/image 1.png" alt="Programming Project Preview">
-            </div>
-            <h2 class="property-title">Programming</h2>
-        </a>
-    </section>
+        <!-- Contact Preview -->
+        <section class="property-card">
+            <a href="contact.html">
+                <div class="property-text-hidden">
+                    <h3>Get In Touch</h3>
+                    <p>Have a project in mind? Let's collaborate and create something beautiful together.</p>
+                </div>
+                <div class="property-image-container">
+                    <div class="placeholder-icon">✉️</div> 
+                </div>
+                <h2 class="property-title">Contact</h2>
+            </a>
+        </section>
 
-    <!-- Photography Section -->
-    <section class="property-card">
-        <a href="photography.html">
-            <div class="property-text-hidden">
-                <h3>Photography</h3>
-                <p>A collection of my favorite shots, capturing moments and telling stories through the lens.</p>
-            </div>
-            <div class="property-image-container property-image-double">
-                <img src="images/IMG_8527 1.png" alt="Photography Example 1">
-                <img src="images/IMG_8529 1.png" alt="Photography Example 2">
-            </div>
-            <h2 class="property-title">Photography</h2>
-        </a>
-    </section>
+        <!-- My Work Preview (Consolidated) -->
+        <section class="property-card">
+            <a href="graphic_design.html"> 
+                <div class="property-text-hidden">
+                    <h3>Portfolio</h3>
+                    <p>Graphic Design, Programming, and Photography.</p>
+                </div>
+                <div class="property-image-container property-image-double">
+                    <img src="images/m+c_stationary_mockup 1.png" alt="Design">
+                    <img src="images/image 1.png" alt="Code">
+                </div>
+                <h2 class="property-title">My Work</h2>
+            </a>
+        </section>
 
-</main>
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="social-icons">
-            <a href="https://github.com/sarahibsen" class="social-icon"><img src = "images/Github.svg"></a>
-            <a href="https://instagram.com/tullibeee" class="social-icon"><img src = "images/Instagram.svg"></a>
-            <a href="#" class="social-icon"><img src = "images/Figma.svg"></a>
-        </div>
-        <p class="contact-text">Contact me</p>
-    </footer>
+        <!-- Shop Preview -->
+        <section class="property-card">
+            <a href="shop.html">
+                <div class="property-text-hidden">
+                    <h3>The Shop</h3>
+                    <p>Prints, digital assets, and curated design pieces available for purchase.</p>
+                </div>
+                <div class="property-image-container">
+                    <div class="placeholder-icon">🛍️</div>
+                </div>
+                <h2 class="property-title">Shop</h2>
+            </a>
+        </section>
 
-    <script src="script/script.js"></script>
-</body>
-</html>
+    </main>
