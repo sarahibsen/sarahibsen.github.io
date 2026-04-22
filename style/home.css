@@ -1,4 +1,4 @@
-/* 1. Animated Background (Keep this at the top) */
+/* 1. Animated Background (No changes needed, keep your existing one) */
 body {
     margin: 0;
     font-family: 'Jaldi', sans-serif;
@@ -6,6 +6,7 @@ body {
     background: linear-gradient(-45deg, #f3e7e9, #e3eeff, #fef9e7, #f3e7e9);
     background-size: 400% 400%;
     animation: gradientBG 15s ease infinite;
+    overflow-x: hidden;
 }
 
 @keyframes gradientBG {
@@ -14,45 +15,68 @@ body {
     100% { background-position: 0% 50%; }
 }
 
-/* 2. Grid Layout */
+/* 2. Cascading Vertical Layout */
 .main-content.grid-container {
     display: grid;
-    /* This creates 2 columns on desktop, 1 on mobile automatically */
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-    gap: 40px;
-    padding: 40px;
-    max-width: 1100px;
+    /* Create two distinct columns for desktop */
+    grid-template-columns: 1fr 1fr;
+    column-gap: 60px;
+    row-gap: 40px;
+    padding: 80px 40px;
+    max-width: 1000px;
     margin: 0 auto;
+    align-items: start;
 }
 
-/* 3. Card Styling */
-.property-card {
-    background: rgba(255, 255, 255, 0.7);
-    backdrop-filter: blur(10px);
-    border-radius: 20px;
-    overflow: hidden;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    border: 1px solid rgba(255, 255, 255, 0.3);
+/* 3. The "Cascade" Effect (Desktop) */
+/* This shifts the second and fourth cards down to create the staggered look */
+@media (min-width: 769px) {
+    .property-card:nth-child(even) {
+        margin-top: 120px;
+    }
 }
+
+/* 4. Card Design */
+.property-card {
+    background: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(12px);
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.07);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    
+    /* Animation for the cascade entrance */
+    opacity: 0;
+    animation: cascadeIn 0.8s ease forwards;
+}
+
+@keyframes cascadeIn {
+    from { opacity: 0; transform: translateY(40px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Staggering the entrance of each card */
+.property-card:nth-child(1) { animation-delay: 0.2s; }
+.property-card:nth-child(2) { animation-delay: 0.4s; }
+.property-card:nth-child(3) { animation-delay: 0.6s; }
+.property-card:nth-child(4) { animation-delay: 0.8s; }
 
 .property-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 15px 45px rgba(0, 0, 0, 0.1);
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 20px 45px rgba(0, 0, 0, 0.12);
 }
 
 .property-card a {
     text-decoration: none;
     color: inherit;
-    display: flex;
-    flex-direction: column;
 }
 
-/* 4. Image/Preview Area */
+/* 5. Image Container & Overlay */
 .property-image-container {
     position: relative;
     width: 100%;
-    height: 250px;
+    height: 320px; /* Taller for a vertical feel */
     background: #EBC9B9;
     overflow: hidden;
 }
@@ -61,75 +85,80 @@ body {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 0.6s ease;
 }
 
-/* Zoom effect on hover */
-.property-card:hover .property-image-container img {
-    transform: scale(1.1);
-}
-
-/* Placeholder for Shop/Contact icons */
 .placeholder-icon {
     width: 100%;
     height: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 5rem;
+    font-size: 4rem;
     background: #f8e1d7;
 }
 
-/* 5. Hover Overlay Text */
 .property-overlay {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(235, 201, 185, 0.9); /* Your signature color */
+    background: rgba(235, 201, 185, 0.92);
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 20px;
+    padding: 30px;
     text-align: center;
     opacity: 0;
     transition: opacity 0.4s ease;
 }
 
 .property-overlay p {
-    color: #333;
     font-size: 1.1rem;
-    font-weight: 500;
+    line-height: 1.5;
+    color: #444;
 }
 
 .property-card:hover .property-overlay {
     opacity: 1;
 }
 
-/* 6. Card Title Area */
+/* 6. Footer Area of Card */
 .card-footer {
-    padding: 20px;
-    background: white;
+    padding: 25px;
+    background: rgba(255, 255, 255, 0.5);
     text-align: center;
 }
 
 .property-title {
     margin: 0;
-    font-size: 22px;
-    letter-spacing: 1px;
+    font-size: 20px;
+    letter-spacing: 2px;
     text-transform: uppercase;
+    font-weight: 400;
 }
 
-/* 7. Responsive Mobile Tweaks */
-@media (max-width: 480px) {
+/* 7. Responsive Tweaks for Mobile */
+@media (max-width: 768px) {
     .main-content.grid-container {
-        grid-template-columns: 1fr; /* Force 1 column on small phones */
-        padding: 20px;
-        gap: 20px;
+        grid-template-columns: 1fr; /* Single column vertical flow */
+        padding: 40px 20px;
+        gap: 30px;
     }
     
+    .property-card:nth-child(even) {
+        margin-top: 0; /* Remove cascade offset on mobile */
+    }
+
     .property-image-container {
-        height: 200px;
+        height: 250px;
+    }
+    
+    .property-overlay {
+        opacity: 1; /* Keep text visible on mobile since there is no hover */
+        position: relative;
+        background: transparent;
+        height: auto;
+        padding: 15px;
     }
 }
