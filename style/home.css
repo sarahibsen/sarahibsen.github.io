@@ -1,4 +1,8 @@
-/* 1. Animated Background (No changes needed, keep your existing one) */
+/* --- Global Reset & Background --- */
+* {
+    box-sizing: border-box; 
+}
+
 body {
     margin: 0;
     font-family: 'Jaldi', sans-serif;
@@ -15,40 +19,63 @@ body {
     100% { background-position: 0% 50%; }
 }
 
-/* 2. Cascading Vertical Layout */
+/* --- Improved Introduction --- */
+.intro-section {
+    padding: 100px 20px 40px 20px;
+    text-align: center;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.header-text {
+    font-size: 3.5rem;
+    font-weight: 700;
+    margin: 0 0 15px 0;
+    letter-spacing: -1px;
+    color: #1a1a1a;
+}
+
+.body-text {
+    font-size: 1.2rem;
+    line-height: 1.6;
+    color: #444;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* --- Cascading Vertical Layout --- */
 .main-content.grid-container {
     display: grid;
-    /* Create two distinct columns for desktop */
     grid-template-columns: 1fr 1fr;
     column-gap: 60px;
     row-gap: 40px;
-    padding: 80px 40px;
-    max-width: 1000px;
+    padding: 60px 40px 100px 40px;
+    max-width: 1100px;
     margin: 0 auto;
     align-items: start;
 }
 
-/* 3. The "Cascade" Effect (Desktop) */
-/* This shifts the second and fourth cards down to create the staggered look */
 @media (min-width: 769px) {
     .property-card:nth-child(even) {
         margin-top: 120px;
     }
 }
 
-/* 4. Card Design */
+/* --- Card Design Fixes --- */
 .property-card {
     background: rgba(255, 255, 255, 0.6);
     backdrop-filter: blur(12px);
-    border-radius: 15px;
+    border-radius: 20px;
     overflow: hidden;
     box-shadow: 0 15px 35px rgba(0, 0, 0, 0.07);
     border: 1px solid rgba(255, 255, 255, 0.4);
     transition: transform 0.4s ease, box-shadow 0.4s ease;
-    
-    /* Animation for the cascade entrance */
     opacity: 0;
     animation: cascadeIn 0.8s ease forwards;
+    
+    /* Ensure the link takes up full card height */
+    display: flex;
+    flex-direction: column;
 }
 
 @keyframes cascadeIn {
@@ -56,7 +83,6 @@ body {
     to { opacity: 1; transform: translateY(0); }
 }
 
-/* Staggering the entrance of each card */
 .property-card:nth-child(1) { animation-delay: 0.2s; }
 .property-card:nth-child(2) { animation-delay: 0.4s; }
 .property-card:nth-child(3) { animation-delay: 0.6s; }
@@ -70,13 +96,16 @@ body {
 .property-card a {
     text-decoration: none;
     color: inherit;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
 }
 
-/* 5. Image Container & Overlay */
+/* ---Image & Overlay Centering Fix --- */
 .property-image-container {
     position: relative;
     width: 100%;
-    height: 320px; /* Taller for a vertical feel */
+    height: 350px;
     background: #EBC9B9;
     overflow: hidden;
 }
@@ -87,27 +116,17 @@ body {
     object-fit: cover;
 }
 
-.placeholder-icon {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 4rem;
-    background: #f8e1d7;
-}
-
 .property-overlay {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(235, 201, 185, 0.92);
-    display: flex;
+    background: rgba(235, 201, 185, 0.96);
+    display: flex; /* Centers text horizontally and vertically */
     align-items: center;
     justify-content: center;
-    padding: 30px;
+    padding: 40px; /* Space so text doesn't hit edges */
     text-align: center;
     opacity: 0;
     transition: opacity 0.4s ease;
@@ -116,49 +135,53 @@ body {
 .property-overlay p {
     font-size: 1.1rem;
     line-height: 1.5;
-    color: #444;
+    color: #222;
+    margin: 0;
 }
 
 .property-card:hover .property-overlay {
     opacity: 1;
 }
 
-/* 6. Footer Area of Card */
+/* --- Footer Centering Fix --- */
 .card-footer {
     padding: 25px;
     background: rgba(255, 255, 255, 0.5);
-    text-align: center;
+    display: flex; /* Fixed centering */
+    align-items: center;
+    justify-content: center;
+    min-height: 80px;
 }
 
 .property-title {
     margin: 0;
-    font-size: 20px;
-    letter-spacing: 2px;
+    font-size: 1.2rem;
+    letter-spacing: 3px;
     text-transform: uppercase;
     font-weight: 400;
+    text-align: center;
 }
 
-/* 7. Responsive Tweaks for Mobile */
+/* --- Responsive Mobile Tweaks --- */
 @media (max-width: 768px) {
+    .header-text { font-size: 2.5rem; }
+    
     .main-content.grid-container {
-        grid-template-columns: 1fr; /* Single column vertical flow */
+        grid-template-columns: 1fr;
         padding: 40px 20px;
         gap: 30px;
     }
     
-    .property-card:nth-child(even) {
-        margin-top: 0; /* Remove cascade offset on mobile */
-    }
-
-    .property-image-container {
-        height: 250px;
-    }
+    .property-card:nth-child(even) { margin-top: 0; }
     
+    .property-image-container { height: 300px; }
+    
+    /* On mobile, we show the text below the image instead of an overlay */
     .property-overlay {
-        opacity: 1; /* Keep text visible on mobile since there is no hover */
         position: relative;
-        background: transparent;
-        height: auto;
-        padding: 15px;
+        opacity: 1;
+        background: white;
+        padding: 20px;
+        min-height: auto;
     }
 }
