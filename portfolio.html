@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Anika's Portfolio</title>
+  <style>
+    /* Navigation CSS elements */
+    * {
+      padding: 0;
+      margin: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      /* Sky Background */
+      background: linear-gradient(to bottom, #87CEEB 0%, #e0f6ff 100%);
+      min-height: 100vh;
+      overflow-x: hidden; /* Prevents horizontal scroll from clouds */
+    }
+
+    .container {
+      width: 100%;
+      min-height: 100vh;
+      position: relative;
+      z-index: 10; /* Keeps content above clouds */
+    }
+
+    .navbar {
+      height: 60px;
+      min-width: 700px;
+      width: 100%;
+      padding-top: 50px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .nav--list {
+      list-style: none;
+      position: relative;
+      width: 80%; /* Adjusted for better look */
+      max-width: 900px;
+      height: 50px;
+      display: flex;
+      border-radius: 50px;
+      justify-content: space-evenly;
+      align-items: center;
+      background: #fcffcb;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    }
+
+    .active {
+      position: absolute;
+      width: 120px;
+      height: 40px;
+      background: #00bfb2;
+      border-radius: 50px;
+      transition: left 300ms cubic-bezier(1, -0.5, 0, 1.5);
+      border-top: 1px solid #000;
+      border-bottom: 1px solid #000;
+      border-left: 5px solid #404239;
+      border-right: 5px solid #404239;
+    }
+
+    .item {
+      height: 100%;
+      width: 120px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .item a {
+      text-decoration: none;
+      text-transform: uppercase;
+      font-size: 13px;
+      font-weight: bold;
+      color: #404239; /* Changed to dark for readability */
+      z-index: 20;
+    }
+
+    /* --- Cloud animation --- */
+
+    .cloud-background {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1; /* Puts clouds behind everything */
+      pointer-events: none; /* Clicking passes through clouds */
+      overflow: hidden;
+    }
+
+    .cloud {
+      position: absolute;
+      fill: white;
+      opacity: 0.8;
+      filter: drop-shadow(0 5px 15px rgba(255,255,255,0.3));
+      animation: drift linear infinite;
+    }
+
+    /* Define Cloud Sizes and Speeds */
+    .cloud-1 { top: 10%; width: 200px; animation-duration: 45s; animation-delay: -5s; }
+    .cloud-2 { top: 25%; width: 150px; animation-duration: 35s; animation-delay: -15s; }
+    .cloud-3 { top: 45%; width: 250px; animation-duration: 55s; animation-delay: -25s; }
+    .cloud-4 { top: 70%; width: 180px; animation-duration: 40s; animation-delay: -10s; }
+
+    @keyframes drift {
+      from {
+        transform: translateX(-300px); /* Start off-screen left */
+      }
+      to {
+        transform: translateX(110vw); /* End off-screen right */
+      }
+    }
+
+    /* End of cloud styles */
+
+  </style>
+</head>
+<body>
+
+  <!-- Background Cloud Layer -->
+  <div class="cloud-background">
+    <!-- SVG Cloud 1 -->
+    <svg class="cloud cloud-1" viewBox="0 0 24 24"><path d="M17.5,19c-3.037,0-5.5-2.463-5.5-5.5c0-0.007,0-0.013,0-0.02c-0.165,0.013-0.331,0.02-0.5,0.02c-2.485,0-4.5-2.015-4.5-4.5c0-0.073,0.002-0.145,0.006-0.217C5.812,8.272,4.5,6.789,4.5,5c0-1.933,1.567-3.5,3.5-3.5c0.312,0,0.612,0.041,0.897,0.117C9.721,0.648,10.78,0,12,0c1.933,0,3.5,1.567,3.5,3.5c0,0.117-0.006,0.233-0.017,0.348C16.326,3.525,17.143,3.5,18,3.5c2.485,0,4.5,2.015,4.5,4.5c0,1.517-0.751,2.857-1.898,3.664C20.898,11.832,21,12.036,21,12.25c0,1.243-1.007,2.25-2.25,2.25c-0.14,0-0.274-0.013-0.403-0.038C18.196,14.77,18.5,15.1,18.5,15.5c0,1.381-1.119,2.5-2.5,2.5c-0.194,0-0.379-0.023-0.557-0.064C15.341,18.535,14.238,19,13,19H17.5z"/></svg>
+    
+    <!-- SVG Cloud 2 (Duplicate or use different ones) -->
+    <svg class="cloud cloud-2" viewBox="0 0 24 24"><path d="M17.5,19c-3.037,0-5.5-2.463-5.5-5.5c0-0.007,0-0.013,0-0.02c-0.165,0.013-0.331,0.02-0.5,0.02c-2.485,0-4.5-2.015-4.5-4.5c0-0.073,0.002-0.145,0.006-0.217C5.812,8.272,4.5,6.789,4.5,5c0-1.933,1.567-3.5,3.5-3.5c0.312,0,0.612,0.041,0.897,0.117C9.721,0.648,10.78,0,12,0c1.933,0,3.5,1.567,3.5,3.5c0,0.117-0.006,0.233-0.017,0.348C16.326,3.525,17.143,3.5,18,3.5c2.485,0,4.5,2.015,4.5,4.5c0,1.517-0.751,2.857-1.898,3.664C20.898,11.832,21,12.036,21,12.25c0,1.243-1.007,2.25-2.25,2.25c-0.14,0-0.274-0.013-0.403-0.038C18.196,14.77,18.5,15.1,18.5,15.5c0,1.381-1.119,2.5-2.5,2.5c-0.194,0-0.379-0.023-0.557-0.064C15.341,18.535,14.238,19,13,19H17.5z"/></svg>
+
+    <!-- SVG Cloud 3 -->
+    <svg class="cloud cloud-3" viewBox="0 0 24 24"><path d="images/cloud"></svg>
+  </div>
+
+  <div class="container">
+    <nav class="navbar">
+      <ul class="nav--list">
+        <li class="active"></li>
+        <li class="item"><a href="#">Work</a></li>
+        <li class="item"><a href="#">Case Studies</a></li>
+        <li class="item"><a href="#">About</a></li>
+        <li class="item"><a href="https://www.linkedin.com/in/sarah-ibsen">LinkedIn</a></li>
+        <li class="item"><a href="images/Resume.pdf" download="Sarah_Ibsen_Resume">Resume</a></li>
+      </ul>
+    </nav>
+
+<!-- Work carousel -->
+
+<!-- About & Contact section -->
+  </div>
+
+  <script>
+    const items = document.querySelectorAll(".item");
+    const active = document.querySelector(".active");
+
+    (function reset() {
+      active.style.left = `${items[0].offsetLeft}px`;
+    })();
+
+    items.forEach((elem) => {
+      elem.addEventListener("click", (e) => {
+        active.style.left = `${elem.offsetLeft}px`;
+      });
+    });
+  </script>
+</body>
+</html>
