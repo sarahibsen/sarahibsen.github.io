@@ -4,21 +4,73 @@
   <meta charset="UTF-8" />
   <title>Anika's Portfolio</title>
   <style>
-    /* Navigation CSS elements */
     * {
       padding: 0;
       margin: 0;
       box-sizing: border-box;
     }
 
+    :root {
+      --bg-color: #050b18; /* Initial Space color */
+    }
+
     body {
-      background: linear-gradient(to bottom, #87CEEB 0%, #e0f6ff 100%);
+      /* The background color is handled by JavaScript for smoothness */
+      background-color: var(--bg-color);
       min-height: 100vh;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       overflow-x: hidden; 
-      scroll-behavior: smooth; /* Smooth scrolling for the links */
+      scroll-behavior: smooth;
+      transition: background-color 0.5s ease;
     }
 
+    /* Fixed Background Layers */
+    .bg-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -2;
+      pointer-events: none;
+    }
+
+    /* Stars (Space) */
+    .stars {
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: radial-gradient(white, rgba(255,255,255,0) 2px);
+      background-size: 50px 50px;
+      opacity: 1;
+      z-index: -1;
+      transition: opacity 0.5s;
+    }
+
+    /* Clouds (Sky) */
+    .cloud-background {
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      z-index: -1;
+      pointer-events: none;
+      opacity: 0; /* Hidden in space */
+      transition: opacity 1s;
+    }
+
+    .cloud {
+      position: absolute;
+      opacity: 0.8;
+      animation: drift linear infinite;
+    }
+    .cloud-1 { top: 10%; width: 250px; animation-duration: 45s; }
+    .cloud-2 { top: 25%; width: 200px; animation-duration: 35s; }
+    .cloud-3 { top: 50%; width: 300px; animation-duration: 55s; }
+
+    @keyframes drift {
+      from { transform: translateX(-350px); }
+      to { transform: translateX(110vw); }
+    }
+
+    /* Content Layout */
     .container {
       width: 100%;
       position: relative;
@@ -27,13 +79,13 @@
 
     .navbar {
       height: 60px;
-      min-width: 700px;
-      width: 100%;
       padding-top: 50px;
       display: flex;
       justify-content: center;
-      align-items: center;
       margin-bottom: 80px;
+      position: sticky;
+      top: 20px;
+      z-index: 100;
     }
 
     .nav--list {
@@ -46,8 +98,9 @@
       border-radius: 50px;
       justify-content: space-evenly;
       align-items: center;
-      background: #fcffcb;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      background: rgba(252, 255, 203, 0.9);
+      backdrop-filter: blur(5px);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
     }
 
     .active {
@@ -58,55 +111,17 @@
       border-radius: 50px;
       transition: left 300ms cubic-bezier(1, -0.5, 0, 1.5);
       border: 1px solid #000;
-      border-left: 5px solid #404239;
-      border-right: 5px solid #404239;
     }
 
-    .item {
-      height: 100%;
-      width: 120px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      z-index: 20;
-    }
+    .item { width: 120px; text-align: center; z-index: 20; }
+    .item a { text-decoration: none; text-transform: uppercase; font-size: 13px; font-weight: bold; color: #404239; }
 
-    .item a {
-      text-decoration: none;
-      text-transform: uppercase;
-      font-size: 13px;
-      font-weight: bold;
-      color: #404239;
-    }
-
-    /* --- Cloud animation --- */
-    .cloud-background {
-      position: fixed;
-      top: 0; left: 0; width: 100%; height: 100%;
-      z-index: -1;
-      pointer-events: none;
-    }
-
-    .cloud {
-      position: absolute;
-      opacity: 0.8;
-      animation: drift linear infinite;
-    }
-
-    .cloud-1 { top: 10%; width: 250px; animation-duration: 45s; animation-delay: -5s; }
-    .cloud-2 { top: 25%; width: 200px; animation-duration: 35s; animation-delay: -15s; }
-    .cloud-3 { top: 50%; width: 300px; animation-duration: 55s; animation-delay: -25s; }
-
-    @keyframes drift {
-      from { transform: translateX(-350px); }
-      to { transform: translateX(110vw); }
-    }
-
-    /* --- Work Section (Horizontal Snap) --- */
+    /* Work Section */
     .work-section {
       width: 90%;
       max-width: 1200px;
-      margin: 0 auto;
+      margin: 100px auto;
+      color: white; /* Light text for dark space background */
     }
 
     .work-container {
@@ -115,130 +130,67 @@
       overflow-x: auto;
       scroll-snap-type: x mandatory;
       padding: 20px 0;
-      -ms-overflow-style: none;
       scrollbar-width: none;
     }
+    .work-container::-webkit-scrollbar { display: none; }
 
-    .work-container::-webkit-scrollbar {
-      display: none;
-    }
-
-    /* Carousel Items as links */
     .work-item {
       min-width: calc(33.33% - 20px); 
       height: 350px;
       border-radius: 12px;
       scroll-snap-align: center;
-      display: flex;
-      justify-content: center;
-      align-items: center;
       transition: transform 0.3s ease;
-      text-decoration: none; /* Remove link underline */
-      overflow: hidden;
     }
-
     .work-item img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      border: 6px solid #ffffff; /* Stylish white border */
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      width: 100%; height: 100%; object-fit: cover;
+      border: 6px solid #ffffff;
       border-radius: 12px;
     }
 
-    .work-item:hover {
-      transform: translateY(-10px) scale(1.02);
+    /* Case Study Cards (Sky/Land sections) */
+    .case-studies-section {
+      max-width: 1000px;
+      margin: 200px auto;
+      padding: 40px;
     }
 
-    .work-controls {
-      display: flex;
-      justify-content: center;
-      gap: 150px;
-      margin-top: 30px;
+    .case-study-card {
+      background: rgba(255, 255, 255, 0.9);
+      margin-bottom: 100px;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      border-left: 8px solid #00bfb2;
     }
 
-    .arrow {
-      background: none;
-      border: none;
-      font-size: 50px;
-      cursor: pointer;
-      color: #404239;
-      transition: opacity 0.2s;
-    }
-
-    /* --- About Section --- */
+    /* About Section (The "Land" area) */
     .about-section {
       display: flex;
       max-width: 800px;
       margin: 100px auto;
-      align-items: center;
-      gap: 60px;
       padding: 40px;
-    }
-
-    .profile-circle {
-      width: 220px;
-      height: 220px;
-      background: #d9d9d9;
-      border-radius: 25%;
-      flex-shrink: 0;
-      overflow: hidden;
-    }
-
-    .about-content h2 {
-      font-size: 1.2rem;
-      margin-bottom: 15px;
-      color: #404239;
-    }
-
-    .about-content p {
-      color: #404239;
-      line-height: 1.6;
-    }
-
-    /* --- Case Study Section Styles --- */
-    .case-studies-section {
-      max-width: 1000px;
-      margin: 50px auto 100px auto;
-      padding: 40px;
-      background: rgba(255, 255, 255, 0.4);
+      background: rgba(255, 255, 255, 0.8);
       border-radius: 20px;
+      align-items: center;
+      gap: 40px;
     }
 
-    .case-studies-section h2 {
-      text-align: center;
-      margin-bottom: 40px;
-      text-transform: uppercase;
-      color: #404239;
-    }
-
-    .case-study-card {
-      background: white;
-      margin-bottom: 40px;
-      padding: 30px;
-      border-radius: 15px;
-      box-shadow: 0 10px 20px rgba(0,0,0,0.05);
-      border-left: 8px solid #00bfb2; /* Matches navbar active color */
-    }
-
-    .case-study-card h3 {
-      margin-bottom: 10px;
-      color: #404239;
-    }
-
-    .case-study-card p {
-      color: #555;
-      line-height: 1.6;
+    iframe {
+      width: 100%;
+      max-width: 600px;
+      margin-top: 20px;
+      border-radius: 8px;
     }
 
   </style>
 </head>
 <body>
 
-  <div class="cloud-background">
-    <img src="images/interactive_elements/batch_cloud2.png" class="cloud cloud-1">
-    <img src="images/interactive_elements/batch_cloud.png" class="cloud cloud-2">
-    <img src="images/interactive_elements/batch_cloud3.png" class="cloud cloud-3">
+  <!-- Background elements -->
+  <div class="stars" id="stars"></div>
+  <div class="cloud-background" id="clouds">
+    <img src="https://www.transparentpng.com/download/cloud/clouds-free-png-images-25.png" class="cloud cloud-1">
+    <img src="https://www.transparentpng.com/download/cloud/clouds-free-png-images-25.png" class="cloud cloud-2">
   </div>
 
   <div class="container">
@@ -248,33 +200,34 @@
         <li class="item"><a href="#work">Work</a></li>
         <li class="item"><a href="#casestudies">Case Studies</a></li>
         <li class="item"><a href="#about">About</a></li>
-        <li class="item"><a href="https://www.linkedin.com/in/sarah-ibsen">LinkedIn</a></li>
-        <li class="item"><a href="images/Resume.pdf" download="Sarah_Ibsen_Resume">Resume</a></li>
       </ul>
     </nav>
 
-    <!-- Work Carousel Section -->
     <section class="work-section" id="work">
+      <h2 style="text-align: center; margin-bottom: 20px;">Project Gallery</h2>
       <div class="work-container" id="workContainer">
-        <!-- Project Cards link to IDs in Case Studies Section -->
-        <a href="#study-1" class="work-item"><img src="images/interactive_elements/design-a-thon.png" alt="Design-a-thon"></a>
-        <a href="#study-2" class="work-item"><img src="images/interactive_elements/future-forward.png" alt="Future Forward"></a>
-        <a href="#study-3" class="work-item"><img src="images/interactive_elements/seed-sync.png" alt="Seed Sync"></a>
-        <a href="#study-4" class="work-item" style="background:#eee; color:#404239; border:6px solid white; border-radius:12px;">Project Four</a>
-        <a href="#study-5" class="work-item" style="background:#eee; color:#404239; border:6px solid white; border-radius:12px;">Project Five</a>
-      </div>
-
-      <div class="work-controls">
-        <button class="arrow" onclick="scrollWork(-1)">&#8592;</button>
-        <button class="arrow" onclick="scrollWork(1)">&#8594;</button>
+        <a href="#study-1" class="work-item"><img src="images/interactive_elements/design-a-thon.png" alt="1"></a>
+        <a href="#study-2" class="work-item"><img src="images/interactive_elements/future-forward.png" alt="2"></a>
+        <a href="#study-3" class="work-item"><img src="images/interactive_elements/seed-sync.png" alt="3"></a>
       </div>
     </section>
 
-    <!-- About section -->
+    <section class="case-studies-section" id="casestudies">
+        <div class="case-study-card" id="study-1">
+            <h3>Design-a-thon</h3>
+            <p>Project details here...</p>
+            <!-- loading="lazy" prevents network bottleneck -->
+            <iframe loading="lazy" src="https://embed.figma.com/proto/dxL30uSYlRwxeK1iANx2rN/Lost-Found?embed-host=share" height="450" allowfullscreen></iframe>
+        </div>
+
+        <div class="case-study-card" id="study-2">
+            <h3>Future Forward</h3>
+            <p>Project details here...</p>
+            <iframe loading="lazy" src="https://embed.figma.com/proto/G9TMFGNZk8GtLuU8E4i77i/Project-1---Fire-Squad?embed-host=share" height="450" allowfullscreen></iframe>
+        </div>
+    </section>
+
     <section class="about-section" id="about">
-      <div class="profile-circle">
-        <img src="images/me.jpg" style="width:100%; height:100%; object-fit:cover;"> 
-      </div>
       <div class="about-content">
         <h2>Who I am</h2>
         <p>
@@ -285,71 +238,69 @@
         </p>
       </div>
     </section>
-
-    <!-- Case studies -->
-    <section class="case-studies-section" id="casestudies">
-        <h2>Case Studies</h2>
-
-        <div class="case-study-card" id="study-1">
-            <h3>Design-a-thon</h3>
-            <p>This project involved a 48-hour sprint to solve the concept of users not being able to remember events in their life. I focused on incorporating everyday use technology, using scientific journals to help with the design flow.</p>
-            <iframe style="border: 1px solid rgba(0, 0, 0, 0.1);" width="500" height="350" src="https://embed.figma.com/proto/dxL30uSYlRwxeK1iANx2rN/Lost-Found?node-id=7-686&starting-point-node-id=7%3A686&embed-host=share" allowfullscreen></iframe>
-        </div>
-
-        <div class="case-study-card" id="study-2">
-            <h3>Future Forward</h3>
-            <p>A mobile application concept focused on sustainable living. This project highlights my ability to blend complex data taken with research of a user group from 17 to 50+. </p>
-            <iframe style="border: 1px solid rgba(0, 0, 0, 0.1);" width="500" height="350" src="https://embed.figma.com/proto/G9TMFGNZk8GtLuU8E4i77i/Project-1---Fire-Squad?node-id=1464-3603&embed-host=share" allowfullscreen></iframe>
-        </div>
-
-        <div class="case-study-card" id="study-3">
-            <h3>Seed Sync</h3>
-            <p>Seed Sync is a health app designed for the community. I led the UI design process for the starting pages as well as the research and statistics taken from user interviews.</p>
-            <iframe style="border: 1px solid rgba(0, 0, 0, 0.1);" width="500" height="350" src="https://embed.figma.com/slides/zMpll5BpF21ATXViTW7yIk/Fire-Squad_Proj2?node-id=1-2257&embed-host=share" allowfullscreen></iframe>
-        </div>
-
-        <div class="case-study-card" id="study-4">
-            <h3>Casey's Wedding</h3>
-            <p>Two clients who got engaged, wanted an all-in-one wedding planner. This included : venue, branding, photoshoots, and stationary.  </p>
-            <br>
-            <a href="https://docs.google.com/document/d/e/2PACX-1vQo3m6XOeIawQ99Sy0y0np2UIJ0bIiGs8tGl0FvnGbFaROzSB1Z2OnWiQN3nRl_owkwxGwStC9I0JNV/pub" target="_blank" rel="noopener noreferrer">Casey's Wedding Initial Interview</a>
- 
-            <iframe style="border: 1px solid rgba(0, 0, 0, 0.1);" width="500" height="350" src="https://embed.figma.com/slides/QtbXzzj6RjiiOPRgPU5cNZ/Casey-s-Wedding?node-id=1-87&embed-host=share" allowfullscreen></iframe>
-        </div>
-
-        <div class="case-study-card" id="study-5">
-            <h3>Papa Gyros</h3>
-            <p>A local family resturant wanted to refresh their menu that is displayed in house. </p>
-            <iframe style="border: 1px solid rgba(0, 0, 0, 0.1);" width="500" height="350" src="https://embed.figma.com/slides/FuvbLgIG6is6Lp3dWNOj2z/Papa-Gyro-Case-Study?node-id=1-32&embed-host=share" allowfullscreen></iframe>
-            
-        </div>
-    </section>
   </div>
 
   <script>
-    /* Navigation JS */
+    /* --- --- */
+    // This ensures iframes only start loading when they are 200px from entering the viewport
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const iframe = entry.target.querySelector('iframe');
+          if (iframe && iframe.dataset.src) {
+            iframe.src = iframe.dataset.src;
+          }
+        }
+      });
+    }, { rootMargin: "200px" });
+
+    document.querySelectorAll('.case-study-card').forEach(card => observer.observe(card));
+
+    /* --- back logic --- */
+    window.addEventListener('scroll', () => {
+      const scrollPos = window.scrollY;
+      const totalHeight = document.body.scrollHeight - window.innerHeight;
+      const scrollPercent = scrollPos / totalHeight;
+
+      const stars = document.getElementById('stars');
+      const clouds = document.getElementById('clouds');
+
+      // Color interpolation: Space (Dark) -> Sky (Blue) -> Land (Green/Brown)
+      let r, g, b;
+
+      if (scrollPercent < 0.5) {
+        // Space to Sky (0% to 50%)
+        // From (5, 11, 24) to (135, 206, 235)
+        const factor = scrollPercent * 2;
+        r = 5 + (135 - 5) * factor;
+        g = 11 + (206 - 11) * factor;
+        b = 24 + (235 - 24) * factor;
+        
+        stars.style.opacity = 1 - factor;
+        clouds.style.opacity = factor;
+      } else {
+        // Sky to Land (50% to 100%)
+        // From (135, 206, 235) to (34, 139, 34)
+        const factor = (scrollPercent - 0.5) * 2;
+        r = 135 + (34 - 135) * factor;
+        g = 206 + (139 - 206) * factor;
+        b = 235 + (34 - 235) * factor;
+        
+        stars.style.opacity = 0;
+        clouds.style.opacity = 1 - factor;
+      }
+
+      document.body.style.backgroundColor = `rgb(${r}, ${g}, ${b})`;
+    });
+
+    /* Navigation Indicator Logic */
     const items = document.querySelectorAll(".item");
     const active = document.querySelector(".active");
-
-    (function reset() {
-      active.style.left = `${items[0].offsetLeft}px`;
-    })();
-
     items.forEach((elem) => {
-      elem.addEventListener("click", (e) => {
+      elem.addEventListener("click", () => {
         active.style.left = `${elem.offsetLeft}px`;
       });
     });
-
-    /* Horizontal Scroll Logic */
-    function scrollWork(direction) {
-      const container = document.getElementById('workContainer');
-      const scrollAmount = container.clientWidth / 3; 
-      container.scrollBy({
-        left: direction * scrollAmount,
-        behavior: 'smooth'
-      });
-    }
   </script>
 </body>
 </html>
